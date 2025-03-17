@@ -6,22 +6,25 @@
             <div class="hidden md:flex items-center space-x-4">
                 <!-- Logo -->
                 <div class="flex-shrink-0  md:block">
-                    <img class="h-10 w-[100px]" src="{{'assets/img/soundauraLogo.png'}}" alt="SoundAura">
+                    <a href="{{ route('home') }}">
+                        <img class="h-10 w-[100px]" src="{{ url('/assets/img/soundauraLogo.png') }}" alt="SoundAura">
+
+                    </a>
                 </div>
 
-           
-                    <div
-                        class="flex items-center bg-black border border-red-600 rounded-full px-3 py-1 focus-within:ring-1 focus-within:ring-red-500">
-                        <input type="text" placeholder="Search..."
-                            class="bg-transparent focus:outline-none text-sm w-52 text-white placeholder-gray-400" />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="h-4 w-4 text-gray-400">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </div>
-            
+
+                <div
+                    class="flex items-center bg-black border border-red-600 rounded-full px-3 py-1 focus-within:ring-1 focus-within:ring-red-500">
+                    <input type="text" placeholder="Search..."
+                        class="bg-transparent focus:outline-none text-sm w-52 text-white placeholder-gray-400" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-4 w-4 text-gray-400">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+
 
 
 
@@ -39,27 +42,12 @@
                 <div class="relative" id="user-dropdown">
                     <button id="user-menu-btn" class="flex items-center space-x-2 focus:outline-none">
                         <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
-                            <img src="{{'assets/img/playboi.jpg'}}" alt="User Avatar" class="w-full h-full object-cover"
-                                onerror="this.src='assets/img/default-avatar.jpg'">
+                            <img src="{{ url('/assets/img/bgggggg22.jpg') }}" alt="User Avatar"
+                                class="w-full h-full object-cover" onerror="this.src='assets/img/default-avatar.jpg'">
                         </div>
-                        <span class="text-white font-light">Playboi carti</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
+                        <span class="text-white font-light">Houssam Bensaltana</span>
+                   
                     </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="user-menu-dropdown"
-                        class="absolute right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1 z-50 hidden">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-red-600">Your Profile</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-red-600">Settings</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-red-600">Favorites</a>
-                        <div class="border-t border-gray-700 my-1"></div>
-                        <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-red-600">Sign out</a>
-                    </div>
                 </div>
             </div>
 
