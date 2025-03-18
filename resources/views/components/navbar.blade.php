@@ -43,7 +43,7 @@
                     <button id="user-menu-btn" class="flex items-center space-x-2 focus:outline-none">
                         <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
                             <img src="{{ url('/assets/img/bgggggg22.jpg') }}" alt="User Avatar"
-                                class="w-full h-full object-cover" onerror="this.src='assets/img/default-avatar.jpg'">
+                                class="w-full h-full object-cover">
                         </div>
                         <span class="text-white font-light">Houssam Bensaltana</span>
                    
@@ -65,8 +65,8 @@
                 <!-- User Profile on Mobile -->
                 <button id="mobile-profile-btn" class="text-white focus:outline-none">
                     <div class="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
-                        <img src="assets/img/avatar.jpg" alt="User Avatar" class="w-full h-full object-cover"
-                            onerror="this.src='assets/img/default-avatar.jpg'">
+                        <img src="{{ url('/assets/img/bgggggg22.jpg') }}" alt="User Avatar" class="w-full h-full object-cover"
+                            >
                     </div>
                 </button>
 
@@ -101,7 +101,7 @@
         <div class="px-4 py-3 flex items-center space-x-3">
             <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
                 <img src="assets/img/avatar.jpg" alt="User Avatar" class="w-full h-full object-cover"
-                    onerror="this.src='assets/img/default-avatar.jpg'">
+                   >
             </div>
             <div>
                 <p class="text-white font-medium">John Doe</p>

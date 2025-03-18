@@ -104,20 +104,23 @@
     </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-black text-white min-h-screen">
 
-    @include('components.navbar')
-    <div class="flex ">
+    <div class="flex flex-col h-screen">
 
-        @include('components.asideNav')
+        @include('components.navbar')
+        <div class="flex flex-1 overflow-hidden">
 
-        <!-- Main Content -->
-        <main class="flex-1">
-            @yield('content')
-        </main>
+            @include('components.dashboardAside')
+
+            <!-- Main Content -->
+            <main class="flex-1 overflow-auto">
+                @yield('content')
+            </main>
+        </div>
+
+
     </div>
-
-    @include('components.footer')
 
 
 

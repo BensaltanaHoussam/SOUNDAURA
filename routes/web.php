@@ -22,3 +22,11 @@ Route::get('/listner/album', function () {
     return view(view: 'listner.albumDetails');
 })->name('album');
 
+Route::get('/admin/releases', function () {
+    return view(view: 'admin.releaseDashboard');
+})->name('releases');
+
+Route::get('/artist/songs', function () {
+    return view(view: 'artist.songsDashboard');
+})->name('songs');
+

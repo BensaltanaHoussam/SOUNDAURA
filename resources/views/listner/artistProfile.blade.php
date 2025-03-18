@@ -1,13 +1,10 @@
-profile
-
 @extends('layouts.app')
 @section('title', 'Artist Profile')
 @section('content')
 
 
-<div class="bg-black text-white p-6">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
-        <div class="w-full md:w-2/5 flex flex-col gap-4">
+<div class="bg-black text-white h-screen">     <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
+        <div class="w-full md:w-2/5 flex flex-col pt-8 gap-4">
             <!-- Artist Profile -->
             <div class="flex gap-4 items-start">
                 <div class="w-32 h-32 rounded-full overflow-hidden flex-shrink-0">
