@@ -31,7 +31,7 @@
             </svg>
 
         </a>
-        <a href="#" class="nav-link flex items-center space-x-3 p-2 rounded-lg text-gray-300 transition-colors">
+        <a href="{{ route('playlists') }}" class="nav-link flex items-center space-x-3 p-2 rounded-lg text-gray-300 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

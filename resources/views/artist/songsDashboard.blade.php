@@ -9,7 +9,7 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-3xl font-bold">My Music</h2>
             <button onclick="openModal()"
-                class="bg-red-600 hover:bg-red-500 text-black px-4 py-2 rounded-md flex items-center gap-2">
+                class="bg-red-600 hover:bg-red-500 text-gray-200 px-4 py-2 rounded-md flex items-center gap-2">
                 Create
                 <i class="fas fa-plus"></i>
             </button>
@@ -17,16 +17,16 @@
 
         <!-- Tabs -->
         <div class="flex gap-2 mb-6">
-            <button class="bg-red-600 text-black px-6 py-2 rounded-full">Drafts</button>
-            <button class="bg-gray-800 hover:bg-slate-600 px-6 py-2 rounded-full">Distributed</button>
-            <button class="bg-gray-800 hover:bg-slate-600 px-6 py-2 rounded-full">Deleted</button>
+            <button class="bg-red-600 text-gray-200 px-6 py-2 rounded-full">Drafts</button>
+            <button class="bg-black hover:bg-slate-600 px-6 py-2 rounded-full">Distributed</button>
+            <button class="bg-black hover:bg-slate-600 px-6 py-2 rounded-full">Deleted</button>
         </div>
 
         <!-- Search Bar -->
         <div class="relative mb-6">
             <i class="fas fa-search absolute left-3 top-3 text-slate-500"></i>
             <input type="text" placeholder="Search title, artist"
-                class="w-full bg-gray-800 border border-slate-700 rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-1 focus:ring-slate-600">
+                class="w-full bg-black border border-slate-700 rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-1 focus:ring-slate-600">
         </div>
 
         <!-- Layout Toggle -->
@@ -124,7 +124,7 @@
 
     <!-- Modal -->
     <div id="createSongModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-        <div class="bg-gray-900 p-8 rounded-lg">
+        <div class="bg-black border p-8 rounded-lg">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-xl font-bold">Add New Song</h3>
                 <button onclick="closeModal()" class="text-gray-400 hover:text-white">
@@ -133,50 +133,59 @@
             </div>
 
             <form enctype="multipart/form-data" class="space-y-6 w-[600px]">
-                <!-- Top section: Basic info -->
+      
                 <div class="flex md:flex-row gap-6">
-                    <!-- Left column: Text inputs -->
+                 
                     <div class=" space-y-4 w-full">
                         <!-- Song Name -->
                         <div>
                             <label class="block text-sm font-medium text-gray-400 mb-1">Song Name</label>
                             <input type="text" name="name" required
-                                class="w-full bg-gray-800 border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                class="w-full bg-black border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
                         </div>
 
                         <!-- Description -->
                         <div>
                             <label class="block text-sm font-medium text-gray-400 mb-1">Description</label>
                             <textarea name="description" rows="3"
-                                class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"></textarea>
+                                class="w-full bg-black border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"></textarea>
                         </div>
 
                         <!-- Features -->
                         <div>
                             <label class="block text-sm font-medium text-gray-400 mb-1">Features</label>
                             <input type="text" name="features"
-                                class="w-full bg-gray-800 border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                class="w-full bg-black border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
                         </div>
 
                         <!-- Type Selection -->
                         <div>
                             <label class="block text-sm font-medium text-gray-400 mb-1">Type</label>
                             <select name="type"
-                                class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                class="w-full bg-black border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
                                 <option value="single">Single</option>
                                 <option value="album">Album</option>
                             </select>
                         </div>
+                           <!-- genre Selection -->
+                           <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Type</label>
+                            <select name="type"
+                                class="w-full bg-black border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                <option value="Rap">Rap</option>
+                                <option value="Hip/Hop">Hip/Hop</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <!-- Right column: Media uploads -->
+                    
                     <div class="space-y-4 w-full">
                         <!-- Cover Image Upload -->
                         <div>
                             <label class="block text-sm font-medium text-gray-400 mb-1">Cover Image</label>
                             <div class="flex items-center justify-center w-full">
                                 <label
-                                    class="w-full flex flex-col items-center px-4 py-6 bg-gray-800 text-gray-400 rounded-lg tracking-wide border border-gray-700 cursor-pointer hover:bg-gray-700">
+                                    class="w-full flex flex-col items-center px-4 py-6 bg-black text-gray-400 rounded-lg tracking-wide border border-gray-700 cursor-pointer hover:bg-gray-700">
                                     <div id="coverPreview" class="hidden w-24 h-24 mb-2">
                                         <img src="" alt="Cover Preview" class="w-full h-full object-cover rounded-lg">
                                     </div>
@@ -193,7 +202,7 @@
                             <label class="block text-sm font-medium text-gray-400 mb-1">Audio File</label>
                             <div class="flex items-center justify-center w-full">
                                 <label
-                                    class="w-full flex flex-col items-center px-4 py-6 bg-gray-800 text-gray-400 rounded-lg tracking-wide border border-gray-700 cursor-pointer hover:bg-gray-700">
+                                    class="w-full flex flex-col items-center px-4 py-6 bg-black text-gray-400 rounded-lg tracking-wide border border-gray-700 cursor-pointer hover:bg-gray-700">
                                     <div id="audioPreview" class="hidden w-full mb-2">
                                         <audio controls class="w-full">
                                             <source src="" type="audio/mpeg">
@@ -213,7 +222,7 @@
                 <!-- Submit Button -->
                 <div class="flex justify-end gap-3 mt-4">
                     <button type="button" onclick="closeModal()"
-                        class="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700">
+                        class="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-700">
                         Cancel
                     </button>
                     <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500">
