@@ -33,9 +33,13 @@ Route::get('/listner/playlists', function () {
 
 
 
-Route::get('/admin/releases', function () {
+Route::get('/admin/users', function () {
     return view(view: 'admin.releaseDashboard');
-})->name('releases');
+})->name('users');
+
+Route::get('/admin/analytics', function () {
+    return view(view: 'admin.adminAnalytics');
+})->name('adminAnalytics');
 
 
 
