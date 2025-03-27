@@ -30,7 +30,7 @@
                                     </div>
                                     <div>
                                         <div>Destroy Lonely</div>
-                            
+
                                     </div>
                                 </div>
                             </td>
