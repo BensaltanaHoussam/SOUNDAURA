@@ -38,6 +38,31 @@ class AuthController extends Controller
     }
 
 
-   
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->route(
+                auth()->user()->role === 'artiste' ? 'songsDashboard' :
+                (auth()->user()->role === 'listner' ? 'playlists' :
+                    (auth()->user()->role === 'admin' ? 'users' : 'home'))
+            )->with('success', 'Welcome back!');
+        }
+
+        return back()
+            ->withInput($request->except('password'))
+            ->withErrors(['email' => 'The provided credentials do not match our records.']);
+    }
+
+
+    
+
+
 
 }

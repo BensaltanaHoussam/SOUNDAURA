@@ -15,6 +15,10 @@ Route::post('/signup', [AuthController::class, 'register'])->name('register.subm
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+
+
 
 
 // Artist routes with middleware
