@@ -57,8 +57,9 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/categories', function () {
         return view('admin.categories');
     })->name('categories');
-
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 });
 
 

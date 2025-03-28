@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
+
+    public function index()
+    {
+        $categories = Category::latest()->get();
+        return view('admin.categories', compact('categories'));
+    }
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -22,5 +30,11 @@ class CategoryController extends Controller
         return back()->with('success', 'Category created successfully');
     }
 
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return back()->with('success', 'Category deleted successfully');
+    }
 
 }
