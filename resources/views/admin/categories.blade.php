@@ -145,13 +145,13 @@
                 </button>
             </div>
 
-            <form id="editForm" action="{{route('')}}" method="POST" class="space-y-6 w-[600px]">
+            <form id="editForm" action="{{route('categories.edit',$category)}}" method="POST" class="space-y-6 w-[600px]">
                 @csrf
                 @method('PUT')
                 <div class="space-y-4 w-full">
                     <div>
                         <label class="block text-sm font-medium text-gray-400 mb-1">Category Name</label>
-                        <input type="text" name="name" id="editCategoryName" required
+                        <input type="text" name="name" value="name" id="editCategoryName" required
                             class="w-full bg-black border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
                     </div>
                 </div>
@@ -177,10 +177,9 @@
         }
 
 
-        function openEditModal(id, name) {
+        function openEditModal(name) {
             document.getElementById('editCategoryModal').classList.remove('hidden');
             document.getElementById('editCategoryModal').classList.add('flex');
-            document.getElementById('editCategoryName').value = name;
         }
 
         function closeEditModal() {
