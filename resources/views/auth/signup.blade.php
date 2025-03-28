@@ -35,10 +35,12 @@
 
     <div class="font-[sans-serif] max-w-7xl mx-auto h-screen">
         <div class="grid md:grid-cols-2 items-center gap-8 h-full">
-            <form action="{{route('register')}}" class="max-w-lg max-md:mx-auto w-full p-12 border-[1px] border-red-600">
+            <form action="" method="POST" class="max-w-lg max-md:mx-auto w-full p-12 border-[1px] border-red-600">
+                @csrf
                 <div class="mb-4">
                     <h3 class="text-white text-4xl font-bold">Sign up</h3>
                 </div>
+
 
                 <!-- Name -->
                 <div>
@@ -124,8 +126,8 @@
                     <div class="relative">
                         <select id="role" name="role"
                             class="w-full text-sm text-white bg-black focus:bg-dark pl-4 pr-10 py-3 rounded-md border border-gray-700 focus:border-red-500 outline-none transition-all appearance-none">
-                            <option value="tourist" class="text-black bg-white">Tourist</option>
-                            <option value="owner" class="text-black bg-white">Property Owner</option>
+                            <option value="artiste" class="text-black bg-white">artiste</option>
+                            <option value="listner" class="text-black bg-white">listner</option>
                         </select>
                     </div>
                 </div>
@@ -136,7 +138,7 @@
                          Register
                     </button>
                 </div>
-                <p class="text-sm mt-8 text-center text-gray-400">Already have an account? <a href="login.html"
+                <p class="text-sm mt-8 text-center text-gray-400">Already have an account? <a href="{{route(name: 'login')}}"
                         class="text-gray-300 font-semibold tracking-wide hover:text-white transition-colors ml-1">Login
                         here</a></p>
             </form>

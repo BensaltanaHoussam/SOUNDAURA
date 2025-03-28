@@ -35,7 +35,9 @@
 
     <div class="font-[sans-serif] max-w-7xl mx-auto h-screen">
         <div class="grid md:grid-cols-2 items-center gap-8 h-full">
-            <form class="max-w-lg max-md:mx-auto w-full p-12 border-red-500 border-[1px]">
+            <form method="" action="" class="max-w-lg max-md:mx-auto w-full p-12 border-red-500 border-[1px]">
+
+                
                 <div class="mb-8">
                     <h3 class="text-white text-4xl font-bold">Sign in</h3>
                     <p class="text-gray-400 text-sm mt-6">Sync with success and unlock your account — let the rhythm of
@@ -105,7 +107,7 @@
                         Log in
                     </button>
                 </div>
-                <p class="text-sm mt-8 text-center text-gray-400">Don't have an account? <a href="/register"
+                <p class="text-sm mt-8 text-center text-gray-400">Don't have an account? <a href="{{route('register')}}"
                         class="text-gray-300 font-semibold tracking-wide hover:text-white transition-colors ml-1">Register
                         here</a></p>
             </form>

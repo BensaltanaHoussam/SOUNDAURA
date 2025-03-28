@@ -4,17 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
 // Public routes
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+
 
 Route::get('/signup', function () {
     return view('auth.signup');
 })->name('register');
+Route::post('/signup', [AuthController::class, 'register'])->name('register.submit');
+
 
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
 
 // Artist routes with middleware
 Route::middleware(['artist'])->prefix('artist')->group(function () {
@@ -46,8 +47,12 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     })->name('adminAnalytics');
 });
 
-// Listener routes (no middleware since it's default)
+
 Route::prefix('listner')->group(function () {
+    Route::get('/', function () {
+        return view('listner.index');
+    })->name('home');
+
     Route::get('/artist', function () {
         return view('listner.artistProfile');
     })->name('profile');

@@ -41,13 +41,28 @@
                 <!-- User Profile Dropdown -->
                 <div class="relative" id="user-dropdown">
                     <button id="user-menu-btn" class="flex items-center space-x-2 focus:outline-none">
+                        <span class="text-white font-light">{{ auth()->user()->name }}</span>
                         <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
                             <img src="{{ url('/assets/img/bgggggg22.jpg') }}" alt="User Avatar"
                                 class="w-full h-full object-cover">
                         </div>
-                        <span class="text-white font-light">Houssam Bensaltana</span>
-                   
+                        
+
                     </button>
+
+                    <!-- Add this after the button -->
+                    <div id="user-menu-dropdown"
+                        class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-900 ring-1 ring-black ring-opacity-5">
+                        <div class="py-1">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="block w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-800">
+                                    Sign out
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -65,8 +80,8 @@
                 <!-- User Profile on Mobile -->
                 <button id="mobile-profile-btn" class="text-white focus:outline-none">
                     <div class="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
-                        <img src="{{ url('/assets/img/bgggggg22.jpg') }}" alt="User Avatar" class="w-full h-full object-cover"
-                            >
+                        <img src="{{ url('/assets/img/bgggggg22.jpg') }}" alt="User Avatar"
+                            class="w-full h-full object-cover">
                     </div>
                 </button>
 
@@ -100,8 +115,7 @@
     <div id="mobile-profile-panel" class="hidden md:hidden bg-gray-900 border-t border-gray-800">
         <div class="px-4 py-3 flex items-center space-x-3">
             <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
-                <img src="assets/img/avatar.jpg" alt="User Avatar" class="w-full h-full object-cover"
-                   >
+                <img src="assets/img/avatar.jpg" alt="User Avatar" class="w-full h-full object-cover">
             </div>
             <div>
                 <p class="text-white font-medium">John Doe</p>
@@ -115,6 +129,14 @@
             <div class="border-t border-gray-800 my-1"></div>
             <a href="#" class="block px-4 py-2 text-red-400 hover:bg-gray-800">Sign out</a>
         </div>
+
+        <div class="border-t border-gray-800 my-1"></div>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="block w-full text-left px-4 py-2 text-red-400 hover:bg-gray-800">
+                Sign out
+            </button>
+        </form>
     </div>
 
     <!-- Mobile Navigation Menu (Hidden by default) -->
