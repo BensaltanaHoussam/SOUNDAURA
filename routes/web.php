@@ -18,6 +18,7 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
@@ -38,6 +39,8 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
     Route::get('/reviews', function () {
         return view('artist.reviews');
     })->name('reviews');
+
+
 });
 
 // Admin routes with middleware
@@ -49,6 +52,10 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/analytics', function () {
         return view('admin.adminAnalytics');
     })->name('adminAnalytics');
+
+    Route::get('/categories', function () {
+        return view('admin.categories');
+    })->name('categories');
 });
 
 

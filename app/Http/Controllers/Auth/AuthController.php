@@ -50,7 +50,7 @@ class AuthController extends Controller
 
             return redirect()->route(
                 auth()->user()->role === 'artiste' ? 'songsDashboard' :
-                (auth()->user()->role === 'listner' ? 'playlists' :
+                (auth()->user()->role === 'listner' ? 'home' :
                     (auth()->user()->role === 'admin' ? 'users' : 'home'))
             )->with('success', 'Welcome back!');
         }
@@ -61,7 +61,19 @@ class AuthController extends Controller
     }
 
 
-    
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')
+            ->with('success', 'You have been successfully logged out.');
+    }
+
+
+
 
 
 

@@ -35,7 +35,7 @@
 
     <div class="font-[sans-serif] max-w-7xl mx-auto h-screen">
         <div class="grid md:grid-cols-2 items-center gap-8 h-full">
-            <form action="" method="POST" class="max-w-lg max-md:mx-auto w-full p-12 border-[1px] border-red-600">
+            <form action="{{route("register.submit")}}" method="POST" class="max-w-lg max-md:mx-auto w-full p-12 border-[1px] border-red-600">
                 @csrf
                 <div class="mb-4">
                     <h3 class="text-white text-4xl font-bold">Sign up</h3>

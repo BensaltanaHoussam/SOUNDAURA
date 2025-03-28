@@ -35,8 +35,8 @@
 
     <div class="font-[sans-serif] max-w-7xl mx-auto h-screen">
         <div class="grid md:grid-cols-2 items-center gap-8 h-full">
-            <form method="" action="" class="max-w-lg max-md:mx-auto w-full p-12 border-red-500 border-[1px]">
-
+            <form method="POST" action="{{route("login.submit")}}" class="max-w-lg max-md:mx-auto w-full p-12 border-red-500 border-[1px]">
+                @csrf
                 
                 <div class="mb-8">
                     <h3 class="text-white text-4xl font-bold">Sign in</h3>

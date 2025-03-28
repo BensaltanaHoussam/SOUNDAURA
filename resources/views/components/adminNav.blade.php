@@ -14,8 +14,8 @@
         </div>
 
         <div class="px-4 py-2 text-sm">
-            <a href="" 
-               class="flex items-center gap-3 p-2 rounded-md {{ request()->routeIs('albumDashboard') ? 'bg-slate-800 bg-opacity-50 text-red-600' : 'text-white hover:bg-slate-800' }}">
+            <a href="{{ route('categories') }}" 
+               class="flex items-center gap-3 p-2 rounded-md {{ request()->routeIs('categories') ? 'bg-slate-800 bg-opacity-50 text-red-600' : 'text-white hover:bg-slate-800' }}">
                 <i class="fas fa-compact-disc"></i>
                 <span>Categories</span>
             </a>
