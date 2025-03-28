@@ -118,8 +118,10 @@
             </button>
         </div>
 
-        <form enctype="multipart/form-data" class="space-y-6 w-[600px]">
+        <form method="POST" action="{{route('categories.store')}}"  class="space-y-6 w-[600px]">
   
+            @csrf
+
             <div class="flex md:flex-row gap-6">
              
                 <div class=" space-y-4 w-full">
@@ -141,7 +143,8 @@
                     Cancel
                 </button>
                 <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500">
-                    Upload
+                    
+                    Save
                 </button>
             </div>
         </form>

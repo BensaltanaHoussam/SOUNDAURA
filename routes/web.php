@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -56,6 +57,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/categories', function () {
         return view('admin.categories');
     })->name('categories');
+
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 });
 
 
