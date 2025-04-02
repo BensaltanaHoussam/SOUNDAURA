@@ -132,15 +132,19 @@
                 </button>
             </div>
 
-            <form enctype="multipart/form-data" class="space-y-6 w-[600px]">
-      
+            <form action="{{route('artist.tracks.store')}}" method="POST" enctype="multipart/form-data"
+                class="space-y-6 w-[600px]">
+                @csrf
+
+          
+
                 <div class="flex md:flex-row gap-6">
-                 
+
                     <div class=" space-y-4 w-full">
-                        <!-- Song Name -->
+                        <!-- Song title -->
                         <div>
                             <label class="block text-sm font-medium text-gray-400 mb-1">Song Name</label>
-                            <input type="text" name="name" required
+                            <input type="text" name="title" required
                                 class="w-full bg-black border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
                         </div>
 
@@ -157,28 +161,20 @@
                             <input type="text" name="features"
                                 class="w-full bg-black border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
                         </div>
-
-                        <!-- Type Selection -->
+                        <!-- genre Selection -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-1">Type</label>
-                            <select name="type"
-                                class="w-full bg-black border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
-                                <option value="single">Single</option>
-                                <option value="album">Album</option>
-                            </select>
-                        </div>
-                           <!-- genre Selection -->
-                           <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-1">Type</label>
-                            <select name="type"
-                                class="w-full bg-black border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
-                                <option value="Rap">Rap</option>
-                                <option value="Hip/Hop">Hip/Hop</option>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Category</label>
+                            <select name="category_id" required
+                                class="w-full bg-black border border-slate-700 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-slate-600">
+                                <option value="">Select a category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
-                    
+
                     <div class="space-y-4 w-full">
                         <!-- Cover Image Upload -->
                         <div>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Artist\TracksController;
+use App\Models\category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -25,9 +27,15 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Artist routes with middleware
 Route::middleware(['artist'])->prefix('artist')->group(function () {
+
+
     Route::get('/songs', function () {
-        return view('artist.songsDashboard');
+        $categories = category::all();
+        return view('artist.songsDashboard' , compact('categories'));
     })->name('songsDashboard');
+    Route::post('/songs', [TracksController::class, 'store'])->name('artist.tracks.store');
+
+
 
     Route::get('/albums', function () {
         return view('artist.albumDashboard');
