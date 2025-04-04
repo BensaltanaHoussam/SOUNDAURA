@@ -115,7 +115,8 @@
                                 <div class="text-sm font-medium mb-2 text-slate-300">Tracklist:</div>
                                 <div class="grid gap-2">
                                     <!-- Track 1 -->
-                                    <div class="flex items-center justify-between hover:border  py-2 px-4 bg-black rounded-lg">
+                                    <div
+                                        class="flex items-center justify-between hover:border  py-2 px-4 bg-black rounded-lg">
                                         <div class="flex items-center gap-3">
                                             <span class="text-slate-400 text-sm">1</span>
                                             <div>
@@ -132,7 +133,8 @@
                                     </div>
 
                                     <!-- Track 2 -->
-                                    <div class="flex items-center justify-between py-2 px-4 hover:border  bg-black rounded-lg">
+                                    <div
+                                        class="flex items-center justify-between py-2 px-4 hover:border  bg-black rounded-lg">
                                         <div class="flex items-center gap-3">
                                             <span class="text-slate-400 text-sm">2</span>
                                             <div>
@@ -194,7 +196,9 @@
                 </button>
             </div>
 
-            <form enctype="multipart/form-data" class="space-y-6 w-[800px]">
+            <form action="{{ route('artist.albums.store') }}" method="POST" enctype="multipart/form-data"
+                class="space-y-6 w-[800px]">
+                @csrf
                 <!-- Album Details Section -->
                 <div class="flex gap-6">
                     <!-- Left: Album Info -->
@@ -211,7 +215,18 @@
                                 class="w-full bg-black border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"></textarea>
                         </div>
 
-                     
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Category</label>
+                            <select name="category_id" required
+                                class="w-full bg-black border border-gray-700 rounded-md px-4 py-2">
+                                <option value="">Select Category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
                     </div>
 
                     <!-- Right: Album Cover -->
@@ -270,43 +285,43 @@
         function addSongField() {
             songCount++;
             const songField = `
-                        <div class="song-entry bg-black p-4 rounded-lg" id="song-${songCount}">
-                            <div class="flex justify-between items-center mb-3">
-                                <h5 class="font-medium">Song ${songCount}</h5>
-                                <button type="button" onclick="removeSong(${songCount})" class="text-red-500 hover:text-red-400">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-400 mb-1">Song Title</label>
-                                    <input type="text" name="songs[${songCount}][title]" required
-                                        class="w-full bg-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
+                            <div class="song-entry bg-black p-4 rounded-lg" id="song-${songCount}">
+                                <div class="flex justify-between items-center mb-3">
+                                    <h5 class="font-medium">Song ${songCount}</h5>
+                                    <button type="button" onclick="removeSong(${songCount})" class="text-red-500 hover:text-red-400">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </div>
 
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-400 mb-1">Features</label>
-                                    <input type="text" name="songs[${songCount}][features]"
-                                        class="w-full bg-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
-                                        placeholder="Optional">
-                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-400 mb-1">Song Title</label>
+                                        <input type="text" name="songs[${songCount}][title]" required
+                                            class="w-full bg-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                    </div>
 
-                                <div class="col-span-2">
-                                    <label class="block text-sm font-medium text-gray-400 mb-1">Audio File</label>
-                                    <div class="flex items-center justify-center w-full">
-                                        <label class="w-full flex items-center gap-2 px-4 py-3 bg-black text-gray-400 rounded-lg tracking-wide border border-gray-600 cursor-pointer hover:bg-gray-600">
-                                            <i class="fas fa-music"></i>
-                                            <span class="text-sm audio-name-${songCount}">Select audio file</span>
-                                            <input type="file" name="songs[${songCount}][audio]" 
-                                                class="hidden" accept="audio/*" required 
-                                                onchange="updateAudioName(${songCount}, this)">
-                                        </label>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-400 mb-1">Features</label>
+                                        <input type="text" name="songs[${songCount}][features]"
+                                            class="w-full bg-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+                                            placeholder="Optional">
+                                    </div>
+
+                                    <div class="col-span-2">
+                                        <label class="block text-sm font-medium text-gray-400 mb-1">Audio File</label>
+                                        <div class="flex items-center justify-center w-full">
+                                            <label class="w-full flex items-center gap-2 px-4 py-3 bg-black text-gray-400 rounded-lg tracking-wide border border-gray-600 cursor-pointer hover:bg-gray-600">
+                                                <i class="fas fa-music"></i>
+                                                <span class="text-sm audio-name-${songCount}">Select audio file</span>
+                                                <input type="file" name="songs[${songCount}][audio]" 
+                                                    class="hidden" accept="audio/*" required 
+                                                    onchange="updateAudioName(${songCount}, this)">
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
+                        `;
 
             document.getElementById('songsContainer').insertAdjacentHTML('beforeend', songField);
         }
@@ -318,6 +333,7 @@
                 addSongField();
             }
         }
+
         function openModal() {
             document.getElementById('createSongModal').classList.remove('hidden');
             document.getElementById('createSongModal').classList.add('flex');

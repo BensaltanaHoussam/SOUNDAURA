@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Artist\AlbumsController;
 use App\Http\Controllers\Artist\TracksController;
+use App\Models\Album;
 use App\Models\category;
 use App\Models\Track;
 use Illuminate\Support\Facades\Route;
@@ -40,8 +42,14 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
 
 
     Route::get('/albums', function () {
-        return view('artist.albumDashboard');
+        $categories = category::all();
+        $albums= Album::with('tracks')->where('user_id', auth()->id())->latest()->get();
+        return view('artist.albumDashboard',compact('categories','albums'));
     })->name('albumDashboard');
+    Route::post('/albums', [AlbumsController::class, 'store'])->name('artist.albums.store');
+
+
+
 
     Route::get('/analytics', function () {
         return view('artist.analytics');
