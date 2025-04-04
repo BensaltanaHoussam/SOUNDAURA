@@ -125,7 +125,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="flex items-center gap-4">
+                                                <div class="flex items-center gap-4 ">
                                                     <button class="text-slate-400 hover:text-white">
                                                         <i class="fas fa-play"></i>
                                                     </button>
