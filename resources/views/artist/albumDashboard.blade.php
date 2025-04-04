@@ -59,100 +59,84 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Album Row -->
-                    <tr class="border-b border-slate-800 hover:bg-black">
-                        <td class="pl-4"> <!-- Added padding -->
-                            <button onclick="toggleTracks('album-1')"
-                                class="w-8 h-8 flex items-center justify-center rounded-full bg-black border hover:bg-slate-600 transition-colors">
-                                <i class="ri-arrow-down-wide-line transform transition-transform duration-200"
-                                    id="chevron-album-1"></i>
-                            </button>
-                        </td>
-                        <td class="py-4">
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-triangle-exclamation text-orange-500"></i>
-                                <div class="w-10 h-10 bg-slate-700 rounded overflow-hidden">
-                                    <img src="{{asset('assets/img/2093.jpg')}}" alt="Album Cover"
-                                        class="w-full h-full object-cover">
-                                </div>
-                                <div>
-                                    <div>2093</div>
-                                    <div class="text-slate-400 text-sm">Yeat</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>Multiple</td>
-                        <td>Album</td>
-                        <td>2025-03-18</td>
-                        <td>
-                            <div class="flex items-center gap-2">
-                                <button class="text-orange-500 hover:text-orange-400">
-                                    <i class="fas fa-thumbs-up"></i>
+                    @foreach ($albums as $album)
+                        <!-- Album Row -->
+                        <tr class="border-b border-slate-800 hover:bg-black">
+                            <td class="pl-4"> <!-- Added padding -->
+                                <button onclick="toggleTracks('album-{{ $album->id }}')"
+                                    class="w-8 h-8 flex items-center justify-center rounded-full bg-black border hover:bg-slate-600 transition-colors">
+                                    <i class="ri-arrow-down-wide-line transform transition-transform duration-200"
+                                        id="chevron-album-{{ $album->id }}"></i>
                                 </button>
-                                <span class="text-slate-400">12</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Accepted</span>
-                        </td>
-                        <td class="pr-4">
-                            <div class="flex justify-end gap-4">
-                                <button class="text-slate-400 hover:text-white">
-                                    <i class="ri-edit-box-fill"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-400">
-                                    <i class="ri-delete-bin-fill"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!-- Tracklist Row (Hidden by default) -->
-                    <tr id="album-1" class="hidden bg-black">
-                        <td colspan="8" class="p-4">
-                            <div class="ml-14 space-y-2">
-                                <!-- Track list -->
-                                <div class="text-sm font-medium mb-2 text-slate-300">Tracklist:</div>
-                                <div class="grid gap-2">
-                                    <!-- Track 1 -->
-                                    <div
-                                        class="flex items-center justify-between hover:border  py-2 px-4 bg-black rounded-lg">
-                                        <div class="flex items-center gap-3">
-                                            <span class="text-slate-400 text-sm">1</span>
-                                            <div>
-                                                <div class="text-white">Psycho CEO</div>
-                                                <div class="text-slate-400 text-sm">3:24</div>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center gap-4">
-                                            <span class="text-slate-400">10.5K plays</span>
-                                            <button class="text-slate-400 hover:text-white">
-                                                <i class="fas fa-play"></i>
-                                            </button>
-                                        </div>
+                            </td>
+                            <td class="py-4">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-triangle-exclamation text-orange-500"></i>
+                                    <div class="w-10 h-10 bg-slate-700 rounded overflow-hidden">
+                                        <img src="{{asset('storage/' . $album->cover_image)}}" alt="Album Cover"
+                                            class="w-full h-full object-cover">
                                     </div>
-
-                                    <!-- Track 2 -->
-                                    <div
-                                        class="flex items-center justify-between py-2 px-4 hover:border  bg-black rounded-lg">
-                                        <div class="flex items-center gap-3">
-                                            <span class="text-slate-400 text-sm">2</span>
-                                            <div>
-                                                <div class="text-white">Power Trip</div>
-                                                <div class="text-slate-400 text-sm">2:56</div>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center gap-4">
-                                            <span class="text-slate-400">8.2K plays</span>
-                                            <button class="text-slate-400 hover:text-white">
-                                                <i class="fas fa-play"></i>
-                                            </button>
-                                        </div>
+                                    <div>
+                                        <div>{{$album->title}}</div>
+                                        <div class="text-slate-400 text-sm">{{auth()->user()->name}}</div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>Multiple</td>
+                            <td>Album</td>
+                            <td>{{ $album->created_at->format('Y-m-d') }}</td>
+                            <td>
+                                <div class="flex items-center gap-2">
+                                    <button class="text-orange-500 hover:text-orange-400">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </button>
+                                    <span class="text-slate-400">0</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Accepted</span>
+                            </td>
+                            <td class="pr-4">
+                                <div class="flex justify-end gap-4">
+                                    <button class="text-slate-400 hover:text-white">
+                                        <i class="ri-edit-box-fill"></i>
+                                    </button>
+                                    <button class="text-red-500 hover:text-red-400">
+                                        <i class="ri-delete-bin-fill"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Tracklist Row -->
+                        <tr id="album-{{ $album->id }}" class="hidden bg-black">
+                            <td colspan="8" class="p-4">
+                                <div class="ml-14 space-y-2">
+                                    <div class="text-sm font-medium mb-2 text-slate-300">Tracklist:</div>
+                                    <div class="grid gap-2">
+                                        @foreach($album->tracks as $index => $track)
+                                            <div class="flex items-center justify-between hover:border py-2 px-4 bg-black rounded-lg"
+                                                onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ auth()->user()->name }}', '{{ asset('storage/' . $track->cover_image) }}')">
+                                                <div class="flex items-center gap-3">
+                                                    <span class="text-slate-400 text-sm">{{ $index + 1 }}</span>
+                                                    <div>
+                                                        <div class="text-white">{{ $track->title }}</div>
+                                                        <div class="text-slate-400 text-sm">{{ $track->features ?: 'No features' }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center gap-4">
+                                                    <button class="text-slate-400 hover:text-white">
+                                                        <i class="fas fa-play"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -285,43 +269,43 @@
         function addSongField() {
             songCount++;
             const songField = `
-                            <div class="song-entry bg-black p-4 rounded-lg" id="song-${songCount}">
-                                <div class="flex justify-between items-center mb-3">
-                                    <h5 class="font-medium">Song ${songCount}</h5>
-                                    <button type="button" onclick="removeSong(${songCount})" class="text-red-500 hover:text-red-400">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-400 mb-1">Song Title</label>
-                                        <input type="text" name="songs[${songCount}][title]" required
-                                            class="w-full bg-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                <div class="song-entry bg-black p-4 rounded-lg" id="song-${songCount}">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <h5 class="font-medium">Song ${songCount}</h5>
+                                        <button type="button" onclick="removeSong(${songCount})" class="text-red-500 hover:text-red-400">
+                                            <i class="fas fa-times"></i>
+                                        </button>
                                     </div>
 
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-400 mb-1">Features</label>
-                                        <input type="text" name="songs[${songCount}][features]"
-                                            class="w-full bg-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
-                                            placeholder="Optional">
-                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-400 mb-1">Song Title</label>
+                                            <input type="text" name="songs[${songCount}][title]" required
+                                                class="w-full bg-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                        </div>
 
-                                    <div class="col-span-2">
-                                        <label class="block text-sm font-medium text-gray-400 mb-1">Audio File</label>
-                                        <div class="flex items-center justify-center w-full">
-                                            <label class="w-full flex items-center gap-2 px-4 py-3 bg-black text-gray-400 rounded-lg tracking-wide border border-gray-600 cursor-pointer hover:bg-gray-600">
-                                                <i class="fas fa-music"></i>
-                                                <span class="text-sm audio-name-${songCount}">Select audio file</span>
-                                                <input type="file" name="songs[${songCount}][audio]" 
-                                                    class="hidden" accept="audio/*" required 
-                                                    onchange="updateAudioName(${songCount}, this)">
-                                            </label>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-400 mb-1">Features</label>
+                                            <input type="text" name="songs[${songCount}][features]"
+                                                class="w-full bg-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+                                                placeholder="Optional">
+                                        </div>
+
+                                        <div class="col-span-2">
+                                            <label class="block text-sm font-medium text-gray-400 mb-1">Audio File</label>
+                                            <div class="flex items-center justify-center w-full">
+                                                <label class="w-full flex items-center gap-2 px-4 py-3 bg-black text-gray-400 rounded-lg tracking-wide border border-gray-600 cursor-pointer hover:bg-gray-600">
+                                                    <i class="fas fa-music"></i>
+                                                    <span class="text-sm audio-name-${songCount}">Select audio file</span>
+                                                    <input type="file" name="songs[${songCount}][audio]" 
+                                                        class="hidden" accept="audio/*" required 
+                                                        onchange="updateAudioName(${songCount}, this)">
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        `;
+                            `;
 
             document.getElementById('songsContainer').insertAdjacentHTML('beforeend', songField);
         }
