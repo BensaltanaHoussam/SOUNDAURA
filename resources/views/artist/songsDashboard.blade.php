@@ -58,48 +58,48 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b border-slate-800 hover:bg-slate-800">
-                        <td class="py-4 pl-2">
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-triangle-exclamation text-orange-500"></i>
-                                <div class="w-10 h-10 bg-slate-700 rounded overflow-hidden">
-                                    <img src="{{asset('assets/img/up2me.jpg')}}" alt="Album Cover"
-                                        class="w-full h-full object-cover">
+                    @foreach($tracks as $track)
+                        <tr class="border-b border-slate-800 hover:bg-slate-800"
+                            onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ auth()->user()->name }}', '{{ asset('storage/' . $track->cover_image) }}')">
+                            <td class="py-4 pl-2">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-triangle-exclamation text-orange-500"></i>
+                                    <div class="w-10 h-10 bg-slate-700 rounded overflow-hidden">
+                                        <img src="{{ asset('storage/' . $track->cover_image) }}" alt="Album Cover"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <div>{{ $track->title }}</div>
+                                        <div class="text-slate-400 text-sm">{{ auth()->user()->name }}</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div>Lying 4 Fun</div>
-                                    <div class="text-slate-400 text-sm">Yeat</div>
+                            </td>
+                            <td>{{ $track->features }}</td>
+                            <td>Single</td>
+                            <td>{{ $track->created_at->format('Y-m-d') }}</td>
+                            <td>
+                                <div class="flex items-center gap-2">
+                                    <button class="text-orange-500 hover:text-orange-400">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </button>
+                                    <span class="text-slate-400">0</span>
                                 </div>
-                            </div>
-                        </td>
-                        <td>PaRaKa</td>
-                        <td>Single</td>
-                        <td>2025-03-18</td>
-                        <td>
-                            <div class="flex items-center gap-2">
-                                <button class="text-orange-500 hover:text-orange-400">
-                                    <i class="fas fa-thumbs-up"></i>
-                                </button>
-                                <span class="text-slate-400">12</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Accepted</span>
-                        </td>
-                        <td class=" pr-4">
-                            <div class="flex justify-end gap-4">
-                                <!-- Edit Button -->
-                                <button class="text-slate-400 hover:text-white">
-                                    <i class="ri-edit-box-fill"></i>
-                                </button>
-
-                                <!-- Delete Button -->
-                                <button class="text-red-500 hover:text-red-400">
-                                    <i class="ri-delete-bin-fill"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span>
+                            </td>
+                            <td class="pr-4">
+                                <div class="flex justify-end gap-4">
+                                    <button class="text-slate-400 hover:text-white">
+                                        <i class="ri-edit-box-fill"></i>
+                                    </button>
+                                    <button class="text-red-500 hover:text-red-400">
+                                        <i class="ri-delete-bin-fill"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -136,7 +136,7 @@
                 class="space-y-6 w-[600px]">
                 @csrf
 
-          
+
 
                 <div class="flex md:flex-row gap-6">
 
@@ -279,6 +279,21 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+
+
+
+        function playTrack(audioUrl, title, artist, coverUrl) {
+            window.dispatchEvent(new CustomEvent('play-track', {
+                detail: {
+                    audioUrl: audioUrl,
+                    title: title,
+                    artist: artist,
+                    coverUrl: coverUrl
+                }
+            }));
+        }
+
     </script>
 
 

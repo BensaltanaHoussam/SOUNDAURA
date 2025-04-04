@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Artist\TracksController;
 use App\Models\category;
+use App\Models\Track;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -31,7 +32,8 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
 
     Route::get('/songs', function () {
         $categories = category::all();
-        return view('artist.songsDashboard' , compact('categories'));
+        $tracks = Track::where('user_id', auth()->id())->latest()->get();
+        return view('artist.songsDashboard' , compact('categories', 'tracks'));
     })->name('songsDashboard');
     Route::post('/songs', [TracksController::class, 'store'])->name('artist.tracks.store');
 
