@@ -90,7 +90,7 @@
 
                 <!-- For Artists -->
                 @foreach($artists as $artist)
-                    <div class="group">
+                    <a href="{{ route('listner.artist.profile', ['user' => $artist->id]) }}" class="group">
                         <div
                             class="relative overflow-hidden rounded-full aspect-square mb-3 bg-gray-900 border border-gray-800">
                             <img src="{{ $artist->profilePicture ? asset('storage/' . $artist->profilePicture) : asset('assets/img/profile.jpg') }}"
@@ -101,7 +101,7 @@
                             <h3 class="text-white font-medium text-sm">{{ $artist->name }}</h3>
                             <p class="text-gray-400 text-xs">{{ $artist->tracks_count ?? 0 }} Tracks</p>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
 
 

@@ -27,5 +27,13 @@ class HomeController extends Controller
         return view('listner.index', compact('artists', 'albums', 'categories'));
     }
 
+    public function showArtistProfile(User $user)
+    {
+        $tracks = $user->tracks()->with('album')->latest()->get();
    
+
+        return view('listner.artistProfile', compact('user', 'tracks'));
+    }
+
+
 }
