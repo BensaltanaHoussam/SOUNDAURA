@@ -89,13 +89,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/artist', function () {
-        return view('listner.artistProfile');
-    })->name('profile');
 
-    Route::get('/album', function () {
-        return view('listner.albumDetails');
-    })->name('album');
 
     Route::get('/playlists', function () {
         return view('listner.playlists');

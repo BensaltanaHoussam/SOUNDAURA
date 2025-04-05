@@ -88,6 +88,7 @@
                     </div>
                 </div>
 
+                <!-- For Artists -->
                 @foreach($artists as $artist)
                     <div class="group">
                         <div
@@ -197,7 +198,7 @@
                         <div class="text-center">
                             <h3 class="text-white font-medium text-sm">{{ $album->title }}</h3>
                             <p class="text-gray-400 text-xs">{{ $album->tracks_count ?? 0 }} <span
-                                    class="text-red-600">tracks</span></p>
+                                    class="text-red-600">Aura</span></p>
                         </div>
                     </div>
                 @endforeach
@@ -229,20 +230,20 @@
             <div class="relative">
                 <div class="overflow-hidden">
                     <div class="flex space-x-4 pb-4">
-                    
+
                         <!-- Category -->
                         @foreach($categories as $category)
-                        <div class="group min-w-[200px] md:min-w-[250px] flex-shrink-0">
-                            <div class="relative overflow-hidden rounded-lg aspect-video mb-3 bg-gray-900">
-                                <img src="{{ asset('assets/img/rage.jpeg') }}" alt="Rap Battles"
-                                    class="w-[300px]  h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                                <div class="absolute bottom-0 left-0 p-4">
-                                    <h3 class="text-white font-bold text-lg">{{ $category->name }}</h3>
-                                    <p class="text-gray-300 text-sm">Rage Electronics tracks</p>
+                            <div class="group min-w-[200px] md:min-w-[250px] flex-shrink-0">
+                                <div class="relative overflow-hidden rounded-lg aspect-video mb-3 bg-gray-900">
+                                    <img src="{{ asset('assets/img/rage.jpeg') }}" alt="Rap Battles"
+                                        class="w-[300px]  h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                                    <div class="absolute bottom-0 left-0 p-4">
+                                        <h3 class="text-white font-bold text-lg">{{ $category->name }}</h3>
+                                        <p class="text-gray-300 text-sm">Rage Electronics tracks</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
 
                     </div>

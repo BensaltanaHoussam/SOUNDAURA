@@ -16,6 +16,11 @@ class Album extends Model
         'cover_image'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
