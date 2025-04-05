@@ -16,6 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
             'artist' => \App\Http\Middleware\ArtistMiddleware::class,
+            'listner' => \App\Http\Middleware\ListnerMiddleware::class,
+           
         ]);
 
     })

@@ -31,7 +31,7 @@ class AuthController extends Controller
         return redirect()->route(
             match ($user->role) {
                 'artiste' => 'songsDashboard',
-                'listner' => 'index',
+                'listner' => 'home',
                 'admin' => 'adminAnalytics',
             }
         )->with('success', 'Registration successful!');

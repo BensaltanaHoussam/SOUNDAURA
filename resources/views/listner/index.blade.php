@@ -88,18 +88,22 @@
                     </div>
                 </div>
 
-                <!-- Artist 6 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden rounded-full aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/ossamason.jpg') }}" alt="Artist 6"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                @foreach($artists as $artist)
+                    <div class="group">
+                        <div
+                            class="relative overflow-hidden rounded-full aspect-square mb-3 bg-gray-900 border border-gray-800">
+                            <img src="{{ $artist->profilePicture ? asset('storage/' . $artist->profilePicture) : asset('assets/img/profile.jpg') }}"
+                                alt="{{ $artist->name }}"
+                                class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-white font-medium text-sm">{{ $artist->name }}</h3>
+                            <p class="text-gray-400 text-xs">{{ $artist->tracks_count ?? 0 }} Tracks</p>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">ossamason</h3>
-                        <p class="text-gray-400 text-xs">175K Followers</p>
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
         </div>
     </section>
@@ -126,8 +130,7 @@
             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 <!-- album 1 -->
                 <div class="group">
-                    <div
-                        class="relative overflow-hidden  mb-3 bg-gray-900 border border-gray-800">
+                    <div class="relative overflow-hidden  mb-3 bg-gray-900 border border-gray-800">
                         <img src="{{ asset('assets/img/wlr.webp') }}" alt="Artist 1"
                             class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
                     </div>
@@ -139,8 +142,7 @@
 
                 <!-- Artist 2 -->
                 <div class="group">
-                    <div
-                        class="relative overflow-hidden  aspect-square mb-3 bg-gray-900 border border-gray-800">
+                    <div class="relative overflow-hidden  aspect-square mb-3 bg-gray-900 border border-gray-800">
                         <img src="{{ asset('assets/img/lyfe.webp') }}" alt="Artist 2"
                             class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
                     </div>
@@ -152,8 +154,7 @@
 
                 <!-- Artist 3 -->
                 <div class="group">
-                    <div
-                        class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
+                    <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
                         <img src="{{ asset('assets/img/spili.jpg') }}" alt="Artist 3"
                             class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
                     </div>
@@ -165,8 +166,7 @@
 
                 <!-- Artist 4 -->
                 <div class="group">
-                    <div
-                        class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
+                    <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
                         <img src="{{ asset('assets/img/yezus.jpg') }}" alt="Artist 4"
                             class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
                     </div>
@@ -178,8 +178,7 @@
 
                 <!-- Artist 5 -->
                 <div class="group">
-                    <div
-                        class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
+                    <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
                         <img src="{{ asset('assets/img/ChopSuey.webp') }}" alt="Artist 5"
                             class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
                     </div>
@@ -189,18 +188,19 @@
                     </div>
                 </div>
 
-                <!-- Artist 6 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden  aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/xxxxxx.webp') }}" alt="Artist 6"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                @foreach($albums as $album)
+                    <div class="group">
+                        <div class="relative overflow-hidden mb-3 bg-gray-900 border border-gray-800">
+                            <img src="{{ asset('storage/' . $album->cover_image) }}" alt="{{ $album->title }}"
+                                class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-white font-medium text-sm">{{ $album->title }}</h3>
+                            <p class="text-gray-400 text-xs">{{ $album->tracks_count ?? 0 }} <span
+                                    class="text-red-600">tracks</span></p>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">?</h3>
-                        <p class="text-gray-400 text-xs">175 <span class="text-red-600">aura</span> </p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -229,57 +229,21 @@
             <div class="relative">
                 <div class="overflow-hidden">
                     <div class="flex space-x-4 pb-4">
-                        <!-- Category 1 -->
-                        <div class="group min-w-[200px] md:min-w-[250px] flex-shrink-0">
-                            <div class="relative overflow-hidden rounded-lg aspect-video mb-3 bg-gray-900">
-                                <img src="{{ asset('assets/img/hipHop.jpg') }}" alt="Hip Hop"
-                                    class="w-[300px] h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                                <div class="absolute bottom-0 left-0 p-4">
-                                    <h3 class="text-white font-bold text-lg">Hip Hop</h3>
-                                    <p class="text-gray-300 text-sm">Best hip hop tracks of the year</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Category 2 -->
-                        <div class="group min-w-[200px] md:min-w-[250px] flex-shrink-0">
-                            <div class="relative overflow-hidden rounded-lg aspect-video mb-3 bg-gray-900">
-                                <img src="{{ asset('assets/img/chill.jpg') }}" alt="Beats & Loops"
-                                    class="w-[300px]  h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                                <div class="absolute bottom-0 left-0 p-4">
-                                    <h3 class="text-white font-bold text-lg">Trap</h3>
-                                    <p class="text-gray-300 text-sm">Trap tracks</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Category 3 -->
-                        <div class="group min-w-[200px] md:min-w-[250px] flex-shrink-0">
-                            <div class="relative overflow-hidden rounded-lg aspect-video mb-3 bg-gray-900">
-                                <img src="{{ asset('assets/img/underground.jpg') }}" alt="Underground"
-                                    class="w-[300px]  h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                                <div class="absolute bottom-0 left-0 p-4">
-                                    <h3 class="text-white font-bold text-lg">Underground</h3>
-                                    <p class="text-gray-300 text-sm">Discover hidden gems</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Category 4 -->
+                    
+                        <!-- Category -->
+                        @foreach($categories as $category)
                         <div class="group min-w-[200px] md:min-w-[250px] flex-shrink-0">
                             <div class="relative overflow-hidden rounded-lg aspect-video mb-3 bg-gray-900">
                                 <img src="{{ asset('assets/img/rage.jpeg') }}" alt="Rap Battles"
                                     class="w-[300px]  h-full object-cover transition-transform group-hover:scale-110 duration-300">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 p-4">
-                                    <h3 class="text-white font-bold text-lg">Rage</h3>
+                                    <h3 class="text-white font-bold text-lg">{{ $category->name }}</h3>
                                     <p class="text-gray-300 text-sm">Rage Electronics tracks</p>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
 
                     </div>
                 </div>

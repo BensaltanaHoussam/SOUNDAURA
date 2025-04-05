@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Artist\AlbumsController;
 use App\Http\Controllers\artist\ProfileController;
 use App\Http\Controllers\Artist\TracksController;
+use App\Http\Controllers\listner\HomeController;
 use App\Models\Album;
 use App\Models\category;
 use App\Models\Track;
@@ -85,10 +86,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 });
 
 
-Route::prefix('listner')->group(function () {
-    Route::get('/', function () {
-        return view('listner.index');
-    })->name('home');
+Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::get('/artist', function () {
         return view('listner.artistProfile');
