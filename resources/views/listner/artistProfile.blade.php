@@ -51,14 +51,39 @@
                 </div>
             </div>
 
-         
+            <!-- Right Section: Albums Grid -->
+            <div class="w-full md:w-[550px]">
+                <div class="grid grid-cols-2 gap-4">
+                    @foreach($albums as $album)
+                        <div class="bg-gray-900 bg-opacity-30 rounded-lg overflow-hidden">
+
+                            <a href="{{ route('listner.album.details', ['album' => $album->id]) }}">
+                                <div class="relative">
+                                    <img src="{{ asset('storage/' . $album->cover_image) }}" alt="{{ $album->title }}"
+                                        class="w-full aspect-square object-cover">
+                                    <div
+                                        class="absolute bottom-3 right-3 w-8 h-8 bg-black hover:bg-red-600 transition duration-200 cursor-pointer rounded-full flex items-center justify-center">
+                                        <i class="ri-play-fill"></i>
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <h3 class="font-bold">{{ $album->title }}</h3>
+                                    <p class="text-xs text-gray-400">Album • {{ $album->tracks_count ?? 0 }} tracks</p>
+                                </div>
+                            </a>
+
+
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 
 
     <script>
         function playTrack(audioUrl, title, artist, coverImage) {
-        
+
             window.dispatchEvent(new CustomEvent('play-track', {
                 detail: {
                     url: audioUrl,
