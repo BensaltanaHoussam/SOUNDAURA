@@ -43,7 +43,7 @@
                     <button id="user-menu-btn" class="flex items-center space-x-2 focus:outline-none">
                         <span class="text-white font-light">{{ auth()->user()->name }}</span>
                         <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
-                            <img src="{{ url('/assets/img/bgggggg22.jpg') }}" alt="User Avatar"
+                            <img src="{{ url('/assets/img/benyatcho.jpg') }}" alt="User Avatar"
                                 class="w-full h-full object-cover">
                         </div>
                         

@@ -31,18 +31,6 @@ class CategoryController extends Controller
     }
 
 
-    public function update(Request $request, Category $category)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name,' . $category->id
-        ]);
-
-        $category->update([
-            'name' => $request->name
-        ]);
-
-        return back()->with('success', 'Category updated successfully');
-    }
 
     public function destroy(Category $category)
     {

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profilePicture')->nullable();
+            $table->text('bio')->nullable();
             $table->enum('role', ['artiste', 'listner', 'admin'])->default('listner');
             $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();

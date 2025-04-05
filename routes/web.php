@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Artist\AlbumsController;
+use App\Http\Controllers\artist\ProfileController;
 use App\Http\Controllers\Artist\TracksController;
 use App\Models\Album;
 use App\Models\category;
@@ -35,7 +36,7 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
     Route::get('/songs', function () {
         $categories = category::all();
         $tracks = Track::where('user_id', auth()->id())->latest()->get();
-        return view('artist.songsDashboard' , compact('categories', 'tracks'));
+        return view('artist.songsDashboard', compact('categories', 'tracks'));
     })->name('songsDashboard');
     Route::post('/songs', [TracksController::class, 'store'])->name('artist.tracks.store');
 
@@ -43,8 +44,8 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
 
     Route::get('/albums', function () {
         $categories = category::all();
-        $albums= Album::with('tracks')->where('user_id', auth()->id())->latest()->get();
-        return view('artist.albumDashboard',compact('categories','albums'));
+        $albums = Album::with('tracks')->where('user_id', auth()->id())->latest()->get();
+        return view('artist.albumDashboard', compact('categories', 'albums'));
     })->name('albumDashboard');
     Route::post('/albums', [AlbumsController::class, 'store'])->name('artist.albums.store');
 
@@ -58,6 +59,9 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
     Route::get('/reviews', function () {
         return view('artist.reviews');
     })->name('reviews');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('artist.profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('artist.profile.update');
 
 
 });
@@ -78,7 +82,6 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-    Route::put('/categories/{category}', action: [CategoryController::class, 'update'])->name('categories.edit');
 });
 
 

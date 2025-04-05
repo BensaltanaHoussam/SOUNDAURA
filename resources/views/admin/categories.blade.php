@@ -52,7 +52,7 @@
                             <td>{{ $category->created_at->format('Y-m-d') }}</td>
                             <td class="pr-4">
                                 <div class="flex gap-4">
-                                    <button onclick="openEditModal('{{ $category->id }}', '{{ $category->name }}')"
+                                    <button
                                         class="text-slate-400 hover:text-white">
                                         <i class="ri-edit-box-fill"></i>
                                     </button>
@@ -135,36 +135,6 @@
 
 
 
-    <!-- Edit Modal -->
-    <div id="editCategoryModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-        <div class="bg-black border p-8 rounded-lg">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold">Edit Category</h3>
-                <button onclick="closeEditModal()" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <form id="editForm" action="{{route('categories.edit',$category)}}" method="POST" class="space-y-6 w-[600px]">
-                @csrf
-                @method('PUT')
-                <div class="space-y-4 w-full">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-1">Category Name</label>
-                        <input type="text" name="name" value="name" id="editCategoryName" required
-                            class="w-full bg-black border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-red-500">
-                    </div>
-                </div>
-                <div class="flex justify-end gap-3 mt-4">
-                    <button type="button" onclick="closeEditModal()"
-                        class="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-700">Cancel</button>
-                    <button type="submit"
-                        class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <script>
         function openModal() {
             document.getElementById('createCategoryModal').classList.remove('hidden');
@@ -176,16 +146,6 @@
             document.getElementById('createCategoryModal').classList.add('hidden');
         }
 
-
-        function openEditModal(name) {
-            document.getElementById('editCategoryModal').classList.remove('hidden');
-            document.getElementById('editCategoryModal').classList.add('flex');
-        }
-
-        function closeEditModal() {
-            document.getElementById('editCategoryModal').classList.remove('flex');
-            document.getElementById('editCategoryModal').classList.add('hidden');
-        }
 
     </script>
 
