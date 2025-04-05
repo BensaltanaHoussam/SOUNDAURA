@@ -18,8 +18,7 @@ class HomeController extends Controller
             ->get();
 
         $albums = Album::with('user')
-            ->latest()
-            ->take(6)
+            ->take(1)
             ->get();
 
         $categories = category::take(4)->get();

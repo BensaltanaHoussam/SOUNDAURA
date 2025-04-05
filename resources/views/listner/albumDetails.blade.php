@@ -8,8 +8,8 @@
 
     <div class="bg-black text-white p-12">
         <!-- Album Header -->
-        <div class="flex gap-4 mb-6">
-            <div class="w-44 flex-shrink-0">
+        <div class="flex gap-4 mb-6 ">
+            <div class="w-60 flex-shrink-0">
                 <img src="{{ asset('storage/' . $album->cover_image) }}" alt="{{ $album->title }}"
                     class="w-full h-full object-cover">
             </div>
@@ -23,6 +23,9 @@
                 <p class="text-gray-300 text-sm">
                     {{ $album->description }}
                 </p>
+                <div class="mt-4 flex items-center gap-4">
+                    <span class="text-sm text-gray-400">{{ $album->tracks->count() }} tracks - {{ $album->created_at->format('Y') }}</span>
+                </div>
             </div>
         </div>
 
