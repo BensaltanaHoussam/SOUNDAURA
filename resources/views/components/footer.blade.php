@@ -56,22 +56,21 @@
     const trackArtist = document.getElementById('trackArtist');
     const trackCover = document.getElementById('trackCover');
 
-    // Play track function to be called from track list
+    // Play track 
     window.playTrack = function (audioUrl, title, artist, coverUrl) {
         trackTitle.textContent = title;
         trackArtist.textContent = artist;
         trackCover.src = coverUrl;
+        audioPlayer.src = audioUrl;
 
-        if (audioPlayer.src !== audioUrl) {
-            audioPlayer.src = audioUrl;
-        }
 
         audioPlayer.play();
         updatePlayPauseIcon(true);
     }
 
+
     // Play/Pause toggle
-    playPauseBtn.addEventListener('click', () => {
+    playPauseBtn.addEventListener('click', function () {
         if (audioPlayer.paused) {
             audioPlayer.play();
             updatePlayPauseIcon(true);
@@ -94,6 +93,7 @@
         progressBar.style.width = `${progress}%`;
         currentTime.textContent = formatTime(audioPlayer.currentTime);
     });
+
 
     // Duration change handler
     audioPlayer.addEventListener('loadedmetadata', () => {

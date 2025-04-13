@@ -64,18 +64,7 @@
                     </div>
                 </div>
 
-                <!-- Artist 5 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden rounded-full aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/playboi.jpg') }}" alt="Artist 5"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Playboi Carti</h3>
-                        <p class="text-gray-400 text-xs">201K Followers</p>
-                    </div>
-                </div>
+            
 
                 <!-- For Artists -->
                 @foreach($artists as $artist)
@@ -118,17 +107,7 @@
 
             <!-- album Grid -->
             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <!-- album 1 -->
-                <div class="group">
-                    <div class="relative overflow-hidden  mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/wlr.webp') }}" alt="Artist 1"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Whole Lotta Red</h3>
-                        <p class="text-gray-400 text-xs">165 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
+         
 
                 <!-- Artist 2 -->
                 <div class="group">
