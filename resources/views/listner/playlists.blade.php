@@ -6,102 +6,82 @@
 
 
 
-    <!-- Top Albums Section -->
-    <section class="py-12 px-4  md:px-8 h-screen bg-black">
-        <div class=" mx-auto px-6">
+    <section class="py-12 px-4 md:px-8 h-screen bg-black">
+        <div class="mx-auto px-6">
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-2xl font-bold text-white flex items-center">
                     My playlists
-                    <span class="ml-2 text-sm text-red-600">6</span>
+                    <span class="ml-2 text-sm text-red-600">{{ $playlists->count() }}</span>
                 </h2>
-                <a href="#" class="text-red-600 text-sm font-medium hover:text-red-500 transition-colors flex items-center">
-                    See more
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </a>
+
+                <!-- Create Playlist Button -->
+                <button onclick="document.getElementById('createPlaylistModal').classList.remove('hidden')"
+                    class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">
+                    Create Playlist
+                </button>
             </div>
 
-            <!-- album Grid -->
+            <!-- Create Playlist Modal -->
+            <div id="createPlaylistModal"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-gray-900 p-8 rounded-lg w-full max-w-md">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-white">Create New Playlist</h3>
+                        <button onclick="document.getElementById('createPlaylistModal').classList.add('hidden')"
+                            class="text-gray-400 hover:text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <form action="{{ route('listner.playlists.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-white mb-2">Cover Image</label>
+                                <input type="file" name="cover_image" accept="image/*" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
+                                                  file:rounded-full file:border-0 file:text-sm file:font-semibold
+                                                  file:bg-red-600 file:text-white hover:file:bg-red-700">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-white mb-2">Title</label>
+                                <input type="text" name="title" required
+                                    class="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-white mb-2">Description</label>
+                                <textarea name="description" rows="3"
+                                    class="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white"></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors">
+                                Create Playlist
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Playlists Grid -->
             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <!-- album 1 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden  mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/wlr.webp') }}" alt="Artist 1"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                @foreach($playlists as $playlist)
+                    <div class="group">
+                        <div class="relative overflow-hidden mb-3 bg-gray-900 border border-gray-800">
+                            <img src="{{ $playlist->cover_image ? asset('storage/' . $playlist->cover_image) : asset('assets/img/default-playlist.jpg') }}"
+                                alt="{{ $playlist->title }}"
+                                class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-white font-medium text-sm">{{ $playlist->title }}</h3>
+                            <p class="text-gray-400 text-xs">{{ $playlist->tracks_count }} tracks</p>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Whole Lotta Red</h3>
-                        <p class="text-gray-400 text-xs">165 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
-                <!-- Artist 2 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden  aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/lyfe.webp') }}" alt="Artist 2"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Lyfe</h3>
-                        <p class="text-gray-400 text-xs">189 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
-                <!-- Artist 3 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/spili.jpg') }}" alt="Artist 3"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">if looks could kill</h3>
-                        <p class="text-gray-400 text-xs">222 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
-                <!-- Artist 4 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/yezus.jpg') }}" alt="Artist 4"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Yeezus</h3>
-                        <p class="text-gray-400 text-xs">152 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
-                <!-- Artist 5 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/ChopSuey.webp') }}" alt="Artist 5"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Pink Tape</h3>
-                        <p class="text-gray-400 text-xs">201 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
-                <!-- Artist 6 -->
-                <div class="group">
-                    <div
-                        class="relative overflow-hidden  aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/xxxxxx.webp') }}" alt="Artist 6"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">?</h3>
-                        <p class="text-gray-400 text-xs">175 <span class="text-red-600">aura</span> </p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -109,7 +89,7 @@
 
 
 
- 
+
 
 
 
