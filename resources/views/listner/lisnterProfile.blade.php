@@ -64,7 +64,18 @@
                 </div>
             </form>
 
-         
+     
+            <div class="mt-8 pt-8 border-t border-gray-700">
+                <h2 class="text-xl font-bold mb-4 text-red-500">Danger Zone</h2>
+                <form action="{{ route('listner.profile.delete') }}" method="POST" class="inline"
+                    onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md">
+                        Delete Account
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

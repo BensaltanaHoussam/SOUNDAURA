@@ -39,7 +39,18 @@ class ListnerProfileController extends Controller
         return back()->with('success', 'Profile updated successfully');
     }
 
+    public function destroy()
+    {
+        $user = auth()->user();
+        
+        if ($user->profilePicture) {
+            Storage::delete($user->profilePicture);
+        }
+        
+        $user->delete();
 
+        return redirect()->route('login')->with('success', 'Your account has been deleted');
+    }
 
 
 }
