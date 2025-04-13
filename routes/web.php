@@ -6,6 +6,7 @@ use App\Http\Controllers\artist\ProfileController;
 use App\Http\Controllers\Artist\TracksController;
 use App\Http\Controllers\Listner\CommentController;
 use App\Http\Controllers\listner\HomeController;
+use App\Http\Controllers\listner\ListnerProfileController;
 use App\Models\Album;
 use App\Models\category;
 use App\Models\Track;
@@ -98,4 +99,12 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
     })->name('playlists');
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+
+    Route::get('/profile', [ListnerProfileController::class, 'edit'])->name('listner.profile.edit');
+    Route::put('/profile', [ListnerProfileController::class, 'update'])->name('listner.profile.update');
+    Route::delete('/profile', [ListnerProfileController::class, 'destroy'])->name('listner.profile.delete');
+
+
+
 });
