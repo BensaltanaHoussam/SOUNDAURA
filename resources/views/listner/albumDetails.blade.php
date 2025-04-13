@@ -24,7 +24,8 @@
                     {{ $album->description }}
                 </p>
                 <div class="mt-4 flex items-center gap-4">
-                    <span class="text-sm text-gray-400">{{ $album->tracks->count() }} tracks - {{ $album->created_at->format('Y') }}</span>
+                    <span class="text-sm text-gray-400">{{ $album->tracks->count() }} tracks -
+                        {{ $album->created_at->format('Y') }}</span>
                 </div>
             </div>
         </div>
@@ -58,43 +59,37 @@
         <div class="mb-20">
             <h2 class="text-xl font-bold mb-4">Comments</h2>
 
-            <!-- Comment 1 -->
+            <!-- Comment Form -->
             <div class="border border-red-900 rounded-lg p-4 mb-4">
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="font-bold">Houssam Bensaltana</span>
-                </div>
-                <input type="text" placeholder="Share your thoughts..."
-                    class="text-sm text-gray-300 mb-3 p-2 w-full bg-transparent border-b border-gray-500 focus:outline-none focus:border-red-600" />
-                <div class="flex justify-end">
-                    <button class="bg-red-600 text-white px-4 py-1 rounded text-sm">Submit</button>
-                </div>
+                <form action="{{ route('comments.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="album_id" value="{{ $album->id }}">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold">{{ auth()->user()->name }}</span>
+                    </div>
+                    <input type="text" name="content" placeholder="Share your thoughts..."
+                        class="text-sm text-gray-300 mb-3 p-2 w-full bg-transparent border-b border-gray-500 focus:outline-none focus:border-red-600"
+                        required />
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-red-600 text-white px-4 py-1 rounded text-sm">Submit</button>
+                    </div>
+                </form>
             </div>
 
-
-            <!-- Comment 2 -->
-            <div class="border border-gray-800 rounded-lg p-4 mb-4">
-                <div class="flex items-center gap-2 mb-2">
-                    <div class="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-xs">S</div>
-                    <span class="font-bold">Lebron james</span>
+            <!-- Comments List -->
+            @foreach($album->comments()->orderBy('created_at', 'desc')->get() as $comment)
+                <div class="border border-gray-800 rounded-lg p-4 mb-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-xs">
+                            {{ substr($comment->user->name, 0, 1) }}
+                        </div>
+                        <span class="font-bold">{{ $comment->user->name }}</span>
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        {{ $comment->content }}
+                    </p>
                 </div>
-                <p class="text-sm text-gray-300">
-                    I love this album! It's on repeat every day. The beats are incredible, and the lyrics really resonate
-                    with me. Each track has its own unique vibe, and I can't get enough of it. This album is definitely one
-                    of the best releases this year. Highly recommended to anyone who appreciates good music!
-                </p>
-            </div>
-
-            <!-- Comment 3 -->
-            <div class="border border-gray-800 rounded-lg p-4">
-                <div class="flex items-center gap-2 mb-2">
-                    <div class="w-6 h-6 rounded-full bg-red-700 flex items-center justify-center text-xs">N</div>
-                    <span class="font-bold">Niz</span>
-                </div>
-                <p class="text-sm text-gray-300">
-                    This album is fire! Yeat really outdid himself with this one. The production is top-notch and the lyrics
-                    are on point. Every track brings something new to the table. Can't stop listening to it!
-                </p>
-            </div>
+            @endforeach
         </div>
 
 
