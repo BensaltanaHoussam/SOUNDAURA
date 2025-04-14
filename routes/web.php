@@ -97,6 +97,8 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
 
     Route::get('/playlists', [PlaylistController::class, 'index'])->name('listner.playlists');
     Route::post('/playlists', [PlaylistController::class, 'store'])->name('listner.playlists.store');
+    Route::post('/playlists/{playlist}/tracks', [PlaylistController::class, 'addTrack'])->name('listner.playlists.add-track');
+    
 
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');

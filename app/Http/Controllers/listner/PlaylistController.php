@@ -35,4 +35,19 @@ class PlaylistController extends Controller
 
         return back()->with('success', 'Playlist created successfully');
     }
+
+    public function addTrack(Request $request, Playlist $playlist)
+    {
+        $validated = $request->validate([
+            'track_id' => 'required|exists:tracks,id'
+        ]);
+
+        // Check if track already exists in playlist
+        if (!$playlist->tracks()->where('track_id', $validated['track_id'])->exists()) {
+            $playlist->tracks()->attach($validated['track_id']);
+            return response()->json(['message' => 'Track added to playlist successfully']);
+        }
+
+        return response()->json(['message' => 'Track already exists in playlist'], 422);
+    }
 }
