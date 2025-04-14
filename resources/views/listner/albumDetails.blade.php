@@ -50,6 +50,7 @@
                                 <i class="fas fa-play"></i>
                             </button>
                         </div>
+                        
                     </div>
                 @endforeach
             </div>

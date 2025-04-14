@@ -45,6 +45,8 @@
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </div>
+                                <x-add-to-playlist-button :trackId="$track->id" />
+
                             </div>
                         @endforeach
                     </div>
