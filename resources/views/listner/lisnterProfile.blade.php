@@ -3,22 +3,12 @@
 
 @section('content')
     <div class="bg-black text-white p-12">
-        <div class="max-w-2xl mx-auto">
+        <div class="max-w-5xl mx-auto">
             <h1 class="text-2xl font-bold mb-6">Edit Profile</h1>
 
             @if (session('success'))
                 <div class="bg-green-500 text-white p-4 rounded-lg mb-6">
                     {{ session('success') }}
-                </div>
-            @endif
-
-            @if ($errors->any())
-                <div class="bg-red-500 text-white p-4 rounded-lg mb-6">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
                 </div>
             @endif
 
@@ -41,20 +31,20 @@
 
                 <div>
                     <label class="block text-sm font-medium mb-2">Name</label>
-                    <input type="text" name="name" value="{{ old('name', $user->name) }}"
-                        class="w-full bg-gray-900 border border-gray-700 rounded-md p-2">
+                    <input type="text" name="name" value="{{ old('name', $user->name) }} " placeholder="Enter your name"
+                        class="w-full bg-black border border-gray-700 rounded-md p-2">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium mb-2">Email</label>
-                    <input type="email" name="email" value="{{ old('email', $user->email) }}"
-                        class="w-full bg-gray-900 border border-gray-700 rounded-md p-2">
+                    <input type="email" name="email" value="{{ old('email', $user->email) }}" placeholder="Enter your email"
+                        class="w-full bg-black  border border-gray-700 rounded-md p-2">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium mb-2">Bio</label>
-                    <textarea name="bio" rows="4"
-                        class="w-full bg-gray-900 border border-gray-700 rounded-md p-2">{{ old('bio', $user->bio) }}</textarea>
+                    <textarea name="bio" rows="4" placeholder="Tell us about yourself"
+                        class="w-full bg-black  border border-gray-700 rounded-md p-2">{{ old('bio', $user->bio) }}</textarea>
                 </div>
 
                 <div class="flex justify-between items-center">
@@ -66,7 +56,7 @@
 
      
             <div class="mt-8 pt-8 border-t border-gray-700">
-                <h2 class="text-xl font-bold mb-4 text-red-500">Danger Zone</h2>
+                <h2 class="text-xl font-bold mb-4 text-red-500">Delete account ?</h2>
                 <form action="{{ route('listner.profile.delete') }}" method="POST" class="inline"
                     onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
                     @csrf
