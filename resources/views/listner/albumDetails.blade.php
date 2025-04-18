@@ -50,7 +50,7 @@
                                 <i class="fas fa-play"></i>
                             </button>
                         </div>
-                        
+
                     </div>
                 @endforeach
             </div>
@@ -81,9 +81,14 @@
             @foreach($album->comments()->orderBy('created_at', 'desc')->get() as $comment)
                 <div class="border border-gray-800 rounded-lg p-4 mb-4">
                     <div class="flex items-center gap-2 mb-2">
-                        <div class="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-xs">
-                            {{ substr($comment->user->name, 0, 1) }}
-                        </div>
+                        @if($comment->user->profilePicture)
+                            <img src="{{ asset('storage/' . $comment->user->profilePicture) }}" alt="{{ $comment->user->name }}"
+                                class="w-8 h-8 rounded-full object-cover">
+                        @else
+                            <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs">
+                                {{ substr($comment->user->name, 0, 1) }}
+                            </div>
+                        @endif
                         <span class="font-bold">{{ $comment->user->name }}</span>
                     </div>
                     <p class="text-sm text-gray-300">
