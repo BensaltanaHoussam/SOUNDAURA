@@ -31,22 +31,25 @@
                     <!-- Track List -->
                     <div class="divide-y divide-gray-800">
                         @foreach($tracks as $track)
-                            <div class="flex items-center p-2 hover:bg-gray-800"
-                                onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ $user->name }}', '{{ asset('storage/' . $track->cover_image) }}')">
-                                <img src="{{ asset('storage/' . $track->cover_image) }}" alt="{{ $track->title }}"
-                                    class="w-10 h-10 object-cover mr-3">
-                                <div class="flex-grow">
-                                    <p class="text-sm">{{ $track->title }}</p>
-                                    <p class="text-xs text-gray-400">{{ $track->features ?: $user->name }}</p>
+                            <div class="flex items-center p-2 hover:bg-gray-800">
+                                <!-- Play Track Area -->
+                                <div class="flex-1 flex items-center cursor-pointer"
+                                    onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ $user->name }}', '{{ asset('storage/' . $track->cover_image) }}')">
+                                    <img src="{{ asset('storage/' . $track->cover_image) }}" alt="{{ $track->title }}"
+                                        class="w-10 h-10 object-cover mr-3">
+                                    <div class="flex-grow">
+                                        <p class="text-sm">{{ $track->title }}</p>
+                                        <p class="text-xs text-gray-400">{{ $track->features ?: $user->name }}</p>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-xs text-red-500">23888</span>
+                                    </div>
                                 </div>
-                                <div class="flex items-center gap-3">
-                                    <span class="text-xs text-red-500">23888</span>
-                                    <button class="text-gray-400 hover:text-white">
-                                        <i class="fas fa-play"></i>
-                                    </button>
-                                </div>
-                                <x-add-to-playlist-button :trackId="$track->id" />
 
+                                <!-- Add to Playlist Button -->
+                                <div class="ml-4" onclick="event.stopPropagation()">
+                                    <x-add-to-playlist-button :trackId="$track->id" />
+                                </div>
                             </div>
                         @endforeach
                     </div>

@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    
     <!-- Favicon -->
     <link rel="icon" href="{{ url('/assets/img/iconaurahhh.png') }}" type="image/x-icon">
 

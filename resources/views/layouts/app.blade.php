@@ -11,6 +11,13 @@
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
     <!-- Favicon -->
     <link rel="icon" href="{{ url('/assets/img/iconaurahhh.png') }}" type="image/x-icon">
 
