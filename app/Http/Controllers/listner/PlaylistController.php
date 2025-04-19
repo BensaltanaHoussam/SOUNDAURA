@@ -49,4 +49,18 @@ class PlaylistController extends Controller
 
         return back()->with('error', 'Track already exists in playlist');
     }
+
+    public function show(Playlist $playlist)
+    {
+        // Ensure user can only view their own playlists
+        if ($playlist->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        return view('listner.playlistDetails', [
+            'playlist' => $playlist->load(['tracks', 'user'])
+        ]);
+    }
+
+
 }

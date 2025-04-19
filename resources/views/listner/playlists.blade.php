@@ -36,9 +36,9 @@
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-white mb-2">Cover Image</label>
-                                <input type="file"  name="cover_image" accept="image/*" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
-                                    file:rounded-full file:border-0 file:text-sm file:font-semibold
-                                    file:bg-red-600 file:text-white hover:file:bg-red-700">
+                                <input type="file" name="cover_image" accept="image/*" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
+                                            file:rounded-full file:border-0 file:text-sm file:font-semibold
+                                            file:bg-red-600 file:text-white hover:file:bg-red-700">
                             </div>
 
                             <div>
@@ -65,17 +65,13 @@
             <!-- Playlists Grid -->
             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 @foreach($playlists as $playlist)
-                    <div class="group">
-                        <div class="relative overflow-hidden mb-3 bg-gray-900 border border-gray-800">
-                            <img src="{{ $playlist->cover_image ? asset('storage/' . $playlist->cover_image) : asset('assets/img/default-playlist.jpg') }}"
-                                alt="{{ $playlist->title }}"
-                                class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-white font-medium text-sm">{{ $playlist->title }}</h3>
-                            <p class="text-gray-400 text-xs">{{ $playlist->tracks_count }} tracks</p>
-                        </div>
-                    </div>
+                    <a href="{{ route('listner.playlists.show', $playlist) }}"
+                        class="bg-gray-300/20 p-4 rounded-lg text-white hover:text-black hover:bg-gray-100 transition">
+                        <img src="{{ $playlist->cover_image ? asset('storage/' . $playlist->cover_image) : asset('assets/img/default-playlist.jpg') }}"
+                            alt="{{ $playlist->title }}" class="w-full aspect-square object-cover mb-3 rounded">
+                        <h3 class="font-bold ">{{ $playlist->title }}</h3>
+                        <p class="text-sm text-gray-400">{{ $playlist->tracks_count }} tracks</p>
+                    </a>
                 @endforeach
             </div>
         </div>
