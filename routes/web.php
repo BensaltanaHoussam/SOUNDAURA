@@ -5,6 +5,7 @@ use App\Http\Controllers\Artist\AlbumsController;
 use App\Http\Controllers\artist\ProfileController;
 use App\Http\Controllers\Artist\TracksController;
 use App\Http\Controllers\Listner\CommentController;
+use App\Http\Controllers\listner\FavoriteController;
 use App\Http\Controllers\listner\HomeController;
 use App\Http\Controllers\listner\ListnerProfileController;
 use App\Http\Controllers\Listner\PlaylistController;
@@ -101,8 +102,8 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
     Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('listner.playlists.show');
     Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('listner.playlists.destroy');
     Route::put('/playlists/{playlist}', [PlaylistController::class, 'update'])->name('listner.playlists.update');
-    
-    
+
+
 
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
@@ -111,6 +112,10 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
     Route::get('/profile', [ListnerProfileController::class, 'edit'])->name('listner.profile.edit');
     Route::put('/profile', [ListnerProfileController::class, 'update'])->name('listner.profile.update');
     Route::delete('/profile', [ListnerProfileController::class, 'destroy'])->name('listner.profile.delete');
+
+
+
+    Route::post('/favorites', [FavoriteController::class, 'toggleFavorite'])->name('listner.favorites.toggle');
 
 
 

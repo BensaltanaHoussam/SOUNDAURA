@@ -31,7 +31,7 @@
                     <!-- Track List -->
                     <div class="divide-y divide-gray-800">
                         @foreach($tracks as $track)
-                            <div class="flex items-center p-2 hover:bg-gray-800">
+                            <div class="flex items-center p-2 hover:bg-gray-500/20">
                                 <!-- Play Track Area -->
                                 <div class="flex-1 flex items-center cursor-pointer"
                                     onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ $user->name }}', '{{ asset('storage/' . $track->cover_image) }}')">
