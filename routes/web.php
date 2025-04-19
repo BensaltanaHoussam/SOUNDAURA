@@ -33,6 +33,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/', [VisitorController::class, 'index'])->name('index');
+
 
 Route::get('/search', [SearchController::class, 'search'])->name('listner.search');
 
