@@ -1,3 +1,6 @@
+
+
+
 <nav class="bg-black shadow-black shadow-2xl sticky top-0 z-50">
     <div class="container mx-auto px-8 lg:px-16">
         <div class="flex justify-between items-center h-16">
@@ -22,7 +25,7 @@
                 <a href="{{ route('login') }}" class="text-white hover:text-red-500 transition-colors px-4 py-2">
                     Login
                 </a>
-                <a href="{{ route('register') }}" class="bg-red-600 hover:bg-red-700 text-white font-medium rounded-full px-6 py-2 transition-colors">
+                <a href="{{ route('register') }}" class="bg-black border hover:bg-red-700 text-white font-medium rounded-full px-6 py-2 transition-colors">
                     Sign Up
                 </a>
             </div>

@@ -3,6 +3,56 @@
 @section('content')
 
 
+
+
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fadeInLeft {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-400 {
+            animation-delay: 400ms;
+        }
+
+        .delay-600 {
+            animation-delay: 600ms;
+        }
+    </style>
+
+
     <section class="hero-section relative overflow-hidden bg-black text-white">
         <!-- Background Elements -->
         <div class="absolute inset-0 overflow-hidden">
@@ -28,22 +78,22 @@
         </div>
 
         <!-- Content Container -->
-        <div class="mx-auto px-8 lg:px-16 py-24 md:py-32 relative z-10">
+        <div class="mx-auto px-8 lg:px-16 py-24 md:py-16 relative z-10">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Left Column - Text Content -->
                 <div class="space-y-8">
                     <div>
                         <h1 class="text-5xl md:text-6xl font-bold mb-4 leading-tight">
-                            <span class="block">Discover Your</span>
-                            <span class="text-red-600">Sound Universe</span>
+                            <span class="block animate-fadeInLeft">Discover Your</span>
+                            <span class="text-red-600 block animate-fadeInLeft delay-200">Sound Universe</span>
                         </h1>
-                        <p class="text-xl md:text-2xl text-gray-300 mt-6">
+                        <p class="text-xl md:text-2xl text-gray-300 mt-6 animate-fadeInLeft delay-400">
                             Unleash the power of music with SoundAura's next-generation audio platform.
                         </p>
                     </div>
 
-                    <div class="flex flex-wrap gap-4 mt-8">
-                        <a href="#"
+                    <div class="flex flex-wrap gap-4 mt-8 animate-fadeInUp delay-400">
+                        <a href="{{ route('login') }}"
                             class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-full px-8 py-4 transition-all duration-300 shadow-lg hover:shadow-red-600/30">
                             Start Listening
                         </a>
@@ -54,7 +104,7 @@
                     </div>
 
                     <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-gray-800">
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-gray-800 animate-fadeInUp delay-600">
                         <div>
                             <div class="text-3xl font-bold text-red-500">10M+</div>
                             <div class="text-sm text-gray-400">Tracks</div>
@@ -71,9 +121,9 @@
                 </div>
 
                 <!-- Right Column - Rectangular Image -->
-                <div class="w-full h-auto pb-8">
-                    <div class="w-full aspect-[16/14] shadow-white/50 shadow-2xl">
-                        <img class="w-full h-full object-cover object-center"
+                <div class="w-full h-auto animate-fadeInUp">
+                    <div class="w-full aspect-[16/14] shadow-white/30 shadow-2xl">
+                        <img class="w-full h-full object-cover rounded-2xl object-center"
                             src="{{ url('/assets/img/playboiHero.webp') }}" alt="SoundAura Hero">
                     </div>
                 </div>
@@ -82,10 +132,11 @@
 
     </section>
 
-    <style>
 
 
-    </style>
+
+
+
 
 
 
