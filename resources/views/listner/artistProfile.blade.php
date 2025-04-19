@@ -47,7 +47,7 @@
                                 </div>
 
                                 <!-- Add to Playlist Button -->
-                                <div class="ml-4" onclick="event.stopPropagation()">
+                                <div class="ml-4" @click.stop>
                                     <x-add-to-playlist-button :trackId="$track->id" />
                                 </div>
                             </div>
