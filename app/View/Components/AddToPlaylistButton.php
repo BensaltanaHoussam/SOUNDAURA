@@ -2,26 +2,21 @@
 
 namespace App\View\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-
 
 class AddToPlaylistButton extends Component
 {
     public $trackId;
+    public $playlists;
 
     public function __construct($trackId)
     {
         $this->trackId = $trackId;
+        $this->playlists = auth()->user()->playlists()->get();
     }
 
     public function render()
     {
-        $playlists = auth()->user()->playlists;
-        return view('components.add-to-playlist-button', [
-            'trackId' => $this->trackId,
-            'playlists' => $playlists
-        ]); 
+        return view(view: 'components.add-to-playlist-button');
     }
 }
