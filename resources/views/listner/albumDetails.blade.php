@@ -34,7 +34,7 @@
         <div class="border border-red-600 rounded-lg overflow-hidden mb-8">
             <div class="divide-y divide-gray-800">
                 @foreach($album->tracks as $track)
-                    <div class="flex items-center p-3 hover:bg-gray-900"
+                    <div class="flex items-center p-3 hover:bg-gray-500/20"
                         onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ $album->user->name }}', '{{ asset('storage/' . $track->cover_image) }}')">
                         <div class="w-10 h-10 mr-3">
                             <img src="{{ asset('storage/' . $track->cover_image) }}" alt="{{ $track->title }}"
@@ -49,6 +49,11 @@
                             <button class="text-gray-400 hover:text-white">
                                 <i class="fas fa-play"></i>
                             </button>
+                        </div>
+
+                        <!-- Add to Playlist Button -->
+                        <div class="ml-4" @click.stop>
+                            <x-add-to-playlist-button :trackId="$track->id" />
                         </div>
 
                     </div>
