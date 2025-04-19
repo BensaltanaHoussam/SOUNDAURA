@@ -12,18 +12,110 @@
                     </a>
                 </div>
 
+                <div class="relative">
+                    <div
+                        class="flex items-center bg-black border border-red-600 rounded-full px-3 py-1 focus-within:ring-1 focus-within:ring-red-500">
+                        <input type="text" id="search-input" placeholder="Search tracks, artists..."
+                            class="bg-transparent focus:outline-none text-sm w-56 text-white placeholder-gray-400" />
+                        <i class="ri-search-line text-gray-400"></i>
+                    </div>
 
-                <div
-                    class="flex items-center bg-black border border-red-600 rounded-full px-3 py-1 focus-within:ring-1 focus-within:ring-red-500">
-                    <input type="text" placeholder="Search..."
-                        class="bg-transparent focus:outline-none text-sm w-52 text-white placeholder-gray-400" />
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-4 w-4 text-gray-400">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
+                    <!-- Search Results Dropdown -->
+                    <div id="search-results"
+                        class="hidden absolute left-0 right-0 mt-2 bg-gray-900 rounded-lg shadow-lg border border-gray-800 z-50 max-h-96 overflow-y-auto">
+                    </div>
                 </div>
+
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const searchInput = document.getElementById('search-input');
+                        const searchResults = document.getElementById('search-results');
+                        let searchTimeout;
+
+                        searchInput.addEventListener('input', function () {
+                            clearTimeout(searchTimeout);
+
+                            if (this.value.length < 2) {
+                                searchResults.classList.add('hidden');
+                                return;
+                            }
+
+                            // Show loading state
+                            searchResults.innerHTML = '<div class="p-4 text-center text-gray-400">Searching...</div>';
+                            searchResults.classList.remove('hidden');
+
+                            searchTimeout = setTimeout(() => {
+                                fetch(`/search?query=${encodeURIComponent(this.value)}`)
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        if (data.error) {
+                                            throw new Error(data.error);
+                                        }
+
+                                        let resultsHtml = '';
+
+                                        // Add tracks section
+                                        if (data.tracks && data.tracks.length > 0) {
+                                            resultsHtml += `
+                                                <div class="p-2">
+                                                    <h3 class="text-xs text-gray-400 uppercase mb-2">Tracks</h3>
+                                                    <div class="space-y-2">
+                                            `;
+                                            data.tracks.forEach(track => {
+                                                resultsHtml += `
+                                                    <a href="/listner/track/${track.id}" 
+                                                       class="flex items-center p-2 hover:bg-gray-800 rounded">
+                                                        <img src="${track.cover_image ? '/storage/' + track.cover_image : '/assets/img/default-track.jpg'}" 
+                                                             alt="${track.title}"
+                                                             class="w-10 h-10 object-cover rounded mr-3">
+                                                        <div>
+                                                            <div class="text-sm text-white">${track.title}</div>
+                                                            <div class="text-xs text-gray-400">${track.user.name}</div>
+                                                        </div>
+                                                    </a>
+                                                `;
+                                            });
+                                            resultsHtml += `</div></div>`;
+                                        }
+
+                                        // No results message
+                                        if (!resultsHtml) {
+                                            resultsHtml = `
+                                                <div class="p-4 text-center text-gray-400">
+                                                    No results found for "${this.value}"
+                                                </div>
+                                            `;
+                                        }
+
+                                        searchResults.innerHTML = resultsHtml;
+                                    })
+                                    .catch(error => {
+                                        console.error('Search error:', error);
+                                        searchResults.innerHTML = `
+                                            <div class="p-4 text-center text-red-500">
+                                                ${error.message || 'An error occurred while searching'}
+                                            </div>
+                                        `;
+                                    });
+                            }, 300);
+                        });
+
+                        // Close results when clicking outside
+                        document.addEventListener('click', function (event) {
+                            if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+                                searchResults.classList.add('hidden');
+                            }
+                        });
+                    });
+                </script>
+
+
 
 
 
@@ -43,10 +135,10 @@
                     <button id="user-menu-btn" class="flex items-center space-x-2 focus:outline-none">
                         <span class="text-white font-light">{{ auth()->user()->name }}</span>
                         <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center overflow-hidden">
-                            <img src="{{ auth()->user()->profilePicture ? asset('storage/' . auth()->user()->profilePicture) : asset('assets/img/unknown.webp') }}" alt="User Avatar"
-                                class="w-full h-full object-cover">
+                            <img src="{{ auth()->user()->profilePicture ? asset('storage/' . auth()->user()->profilePicture) : asset('assets/img/unknown.webp') }}"
+                                alt="User Avatar" class="w-full h-full object-cover">
                         </div>
-                        
+
 
                     </button>
 
@@ -204,5 +296,14 @@
                 }
             });
         });
+
+
+
+
+
     </script>
+
+
+
+
 </nav>

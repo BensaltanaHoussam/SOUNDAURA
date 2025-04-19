@@ -29,7 +29,7 @@
         <div class="border border-gray-800 rounded-lg overflow-hidden mb-8">
             <div class="divide-y divide-gray-800">
                 @foreach($playlist->tracks as $track)
-                    <div class="flex items-center p-3 hover:bg-gray-900">
+                    <div class="flex items-center p-3 hover:bg-gray-500/20">
                         <div class="flex-1 flex items-center cursor-pointer"
                             onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ $track->user->name }}', '{{ asset('storage/' . $track->cover_image) }}')">
                             <div class="w-10 h-10 mr-3">

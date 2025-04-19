@@ -22,11 +22,13 @@ class Track extends Model
         'features',
     ];
 
+    protected $with = ['user'];
+
     public function album(): BelongsTo
     {
         return $this->belongsTo(Album::class);
     }
-    
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -42,5 +44,11 @@ class Track extends Model
             ->orderBy('playlist_track.created_at');
     }
 
-    
+    public function scopeSearch($query, $searchTerm)
+    {
+        return $query->where('title', 'like', "%{$searchTerm}%")
+            ->orWhere('features', 'like', "%{$searchTerm}%");
+    }
+
+
 }

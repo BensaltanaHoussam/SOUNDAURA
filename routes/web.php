@@ -9,6 +9,7 @@ use App\Http\Controllers\listner\FavoriteController;
 use App\Http\Controllers\listner\HomeController;
 use App\Http\Controllers\listner\ListnerProfileController;
 use App\Http\Controllers\Listner\PlaylistController;
+use App\Http\Controllers\SearchController;
 use App\Models\Album;
 use App\Models\category;
 use App\Models\Track;
@@ -31,6 +32,9 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::get('/search', [SearchController::class, 'search'])->name('listner.search');
 
 
 
@@ -117,6 +121,10 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
 
     Route::post('/favorites', [FavoriteController::class, 'toggleFavorite'])->name('listner.favorites.toggle');
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('listner.favorites');
+
+
+
+
 
 
 
