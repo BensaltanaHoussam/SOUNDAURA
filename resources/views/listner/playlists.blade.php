@@ -37,8 +37,8 @@
                             <div>
                                 <label class="block text-sm font-medium text-white mb-2">Cover Image</label>
                                 <input type="file" name="cover_image" accept="image/*" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
-                                            file:rounded-full file:border-0 file:text-sm file:font-semibold
-                                            file:bg-red-600 file:text-white hover:file:bg-red-700">
+                                                    file:rounded-full file:border-0 file:text-sm file:font-semibold
+                                                    file:bg-red-600 file:text-white hover:file:bg-red-700">
                             </div>
 
                             <div>
@@ -72,6 +72,17 @@
                         <h3 class="font-bold ">{{ $playlist->title }}</h3>
                         <p class="text-sm text-gray-400">{{ $playlist->tracks_count }} tracks</p>
                     </a>
+
+                    <!-- Delete Button -->
+                    <form action="{{ route('listner.playlists.destroy', $playlist) }}" method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this playlist?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-500 hover:text-red-400 flex items-center gap-2">
+                            <i class="ri-delete-bin-line"></i>
+                            <span>Delete Playlist</span>
+                        </button>
+                    </form>
                 @endforeach
             </div>
         </div>

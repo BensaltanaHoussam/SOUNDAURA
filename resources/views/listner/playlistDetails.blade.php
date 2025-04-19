@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', $playlist->title)
 @section('content')
-    <div class="bg-black text-white p-12">
+    <div class="bg-black text-white h-screen p-12">
         <!-- Playlist Header -->
         <div class="flex gap-4 mb-6">
             <div class="w-60 flex-shrink-0">
@@ -15,7 +15,7 @@
                     <span>{{ $playlist->user->name }}</span>
                 </div>
                 <h1 class="text-2xl font-bold mb-1">{{ $playlist->title }}</h1>
-                <div class="text-red-500 text-sm mb-2">PLAYLIST</div>
+                <div class="text-red-500 text-sm mb-2">Playlist</div>
                 <p class="text-gray-300 text-sm">
                     {{ $playlist->description }}
                 </p>
@@ -41,11 +41,7 @@
                                 <p class="font-medium">{{ $track->title }}</p>
                                 <p class="text-xs text-gray-400">{{ $track->user->name }}</p>
                             </div>
-                            <div class="flex items-center gap-3">
-                                <button class="text-gray-400 hover:text-white">
-                                    <i class="ri-play-fill"></i>
-                                </button>
-                            </div>
+                    
                         </div>
                     </div>
                 @endforeach

@@ -99,6 +99,7 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
     Route::post('/playlists', [PlaylistController::class, 'store'])->name('listner.playlists.store');
     Route::post('/playlists/{playlist}/tracks', [PlaylistController::class, 'addTrack'])->name('listner.playlists.add-track');
     Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('listner.playlists.show');
+    Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('listner.playlists.destroy');
     
 
 

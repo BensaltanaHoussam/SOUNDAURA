@@ -2,7 +2,7 @@
 @section('title', 'Profile')
 
 @section('content')
-    <div class="bg-black text-white p-12">
+    <div class="bg-black text-white  h-screen p-12">
         <div class="max-w-5xl mx-auto">
             <h1 class="text-2xl font-bold mb-6">Edit Profile</h1>
 

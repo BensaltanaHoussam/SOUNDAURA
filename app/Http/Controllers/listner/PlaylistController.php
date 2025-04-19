@@ -52,7 +52,6 @@ class PlaylistController extends Controller
 
     public function show(Playlist $playlist)
     {
-        // Ensure user can only view their own playlists
         if ($playlist->user_id !== auth()->id()) {
             abort(403);
         }
@@ -61,6 +60,23 @@ class PlaylistController extends Controller
             'playlist' => $playlist->load(['tracks', 'user'])
         ]);
     }
+
+    public function destroy(Playlist $playlist)
+    {
+        if ($playlist->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        if ($playlist->cover_image) {
+            Storage::disk('public')->delete($playlist->cover_image);
+        }
+
+        $playlist->delete();
+
+        return redirect()->route('listner.playlists')->with('success', 'Playlist deleted successfully');
+    }
+
+    
 
 
 }

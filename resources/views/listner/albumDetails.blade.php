@@ -6,7 +6,7 @@
 
 
 
-    <div class="bg-black text-white p-12">
+    <div class="bg-black text-white  h-screen p-12">
         <!-- Album Header -->
         <div class="flex gap-4 mb-6 ">
             <div class="w-60 flex-shrink-0">
