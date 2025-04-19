@@ -102,7 +102,6 @@
                                         onclick="openEditModal('{{ $playlist->id }}', '{{ $playlist->title }}', '{{ $playlist->description }}')"
                                         class="w-full px-4 py-2 text-sm text-left text-white hover:bg-gray-800 flex items-center gap-2">
                                         <i class="ri-edit-line"></i>
-                                        <span>Edit</span>
                                     </button>
                                 </div>
                             </div>
@@ -216,7 +215,7 @@
             modal.classList.add('hidden');
         }
 
-        
+
         document.getElementById('editPlaylistModal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeEditModal();
