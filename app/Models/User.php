@@ -39,11 +39,21 @@ class User extends Authenticatable
         return $this->hasMany(Playlist::class);
     }
 
-    
+
 
     public function tracks(): HasMany
     {
         return $this->hasMany(Track::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function favoriteTracks()
+    {
+        return $this->belongsToMany(Track::class, 'favorites');
     }
 
     /**
