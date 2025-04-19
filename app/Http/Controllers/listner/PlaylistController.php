@@ -76,7 +76,33 @@ class PlaylistController extends Controller
         return redirect()->route('listner.playlists')->with('success', 'Playlist deleted successfully');
     }
 
-    
+
+    public function update(Request $request, Playlist $playlist)
+    {
+        if ($playlist->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'cover_image' => 'nullable|image|max:2048'
+        ]);
+
+        if ($request->hasFile('cover_image')) {
+            // Delete old image if exists
+            if ($playlist->cover_image) {
+                Storage::disk('public')->delete($playlist->cover_image);
+            }
+            $validated['cover_image'] = $request->file('cover_image')->store('playlist-covers', 'public');
+        }
+
+        $playlist->update($validated);
+
+        return back()->with('success', 'Playlist updated successfully');
+    }
+
+
 
 
 }
