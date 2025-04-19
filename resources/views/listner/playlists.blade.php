@@ -38,8 +38,8 @@
                                 <label class="block text-sm font-medium text-white mb-2">Cover Image</label>
                                 <input type="file" name="cover_image" accept="image/*"
                                     class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
-                                                                                    file:rounded-full file:border-0 file:text-sm file:font-semibold
-                                                                                    file:bg-red-600 file:text-white hover:file:bg-red-700">
+                                                                                            file:rounded-full file:border-0 file:text-sm file:font-semibold
+                                                                                            file:bg-red-600 file:text-white hover:file:bg-red-700">
                             </div>
 
                             <div>
@@ -65,6 +65,17 @@
 
             <!-- Playlists Grid -->
             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+
+                <a href="{{ route('listner.favorites') }}"
+                    class="bg-gradient-to-br border bg-gray-800/40 to-red-900 p-4 rounded-lg text-white hover:from-red-700 hover:to-red-900 transition">
+                    <div class="aspect-square bg-red-600 text-black rounded mb-3 flex items-center justify-center">
+                        <i class="ri-heart-fill text-4xl"></i>
+                    </div>
+                    <h3 class="font-bold">Favorites</h3>
+                    <p class="text-sm text-gray-200">{{ auth()->user()->favoriteTracks()->count() }} tracks</p>
+                </a>
+
+
                 @foreach($playlists as $playlist)
                     <div class="bg-gray-300/20 p-4 rounded-lg text-white hover:bg-gray-800/40 transition relative group">
                         <!-- Playlist Link -->
@@ -131,8 +142,8 @@
                         <div>
                             <label class="block text-sm font-medium text-white mb-2">Cover Image</label>
                             <input type="file" name="cover_image" accept="image/*" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
-                                file:rounded-full file:border-0 file:text-sm file:font-semibold
-                                file:bg-red-600 file:text-white hover:file:bg-red-700">
+                                        file:rounded-full file:border-0 file:text-sm file:font-semibold
+                                        file:bg-red-600 file:text-white hover:file:bg-red-700">
                         </div>
 
                         <div>

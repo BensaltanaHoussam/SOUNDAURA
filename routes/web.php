@@ -116,6 +116,7 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
 
 
     Route::post('/favorites', [FavoriteController::class, 'toggleFavorite'])->name('listner.favorites.toggle');
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('listner.favorites');
 
 
 

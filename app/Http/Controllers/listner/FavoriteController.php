@@ -10,8 +10,11 @@ class FavoriteController extends Controller
 {
     public function index()
     {
-        $favorites = auth()->user()->favoriteTracks()->with('user')->get();
-        return view('listner.favorites', compact('favorites'));
+        $favoriteTracks = auth()->user()->favoriteTracks()
+            ->with('user')
+            ->get();
+
+        return view('listner.favoriteTracks', compact('favoriteTracks'));
     }
 
 
