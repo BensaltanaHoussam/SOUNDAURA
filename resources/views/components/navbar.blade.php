@@ -12,19 +12,7 @@
                     </a>
                 </div>
 
-                <div class="relative">
-                    <div
-                        class="flex items-center bg-black border border-red-600 rounded-full px-3 py-1 focus-within:ring-1 focus-within:ring-red-500">
-                        <input type="text" id="search-input" placeholder="Search tracks, artists..."
-                            class="bg-transparent focus:outline-none text-sm w-56 text-white placeholder-gray-400" />
-                        <i class="ri-search-line text-gray-400"></i>
-                    </div>
 
-                    <!-- Search Results Dropdown -->
-                    <div id="search-results"
-                        class="hidden absolute left-0 right-0 mt-2 bg-black rounded-lg shadow-lg border border-gray-800 z-50 max-h-96 overflow-y-auto">
-                    </div>
-                </div>
 
 
                 <script>
@@ -137,12 +125,28 @@
 
             </div>
 
+            <div class="relative">
+                <div
+                    class="flex items-center bg-black border border-red-600 rounded-full px-3 py-1 focus-within:ring-1 focus-within:ring-red-500">
+                    <input type="text" id="search-input" placeholder="Search tracks, artists..."
+                        class="bg-transparent focus:outline-none text-sm w-96 text-white placeholder-gray-400" />
+                    <i class="ri-search-line text-gray-400"></i>
+                </div>
+
+                <!-- Search Results Dropdown -->
+                <div id="search-results"
+                    class="hidden absolute left-0 right-0 mt-2 bg-black rounded-lg shadow-lg border border-gray-800 z-50 max-h-96 overflow-y-auto">
+                </div>
+            </div>
+
 
 
 
 
             <!-- Right Side -User Profile -->
             <div class="hidden md:flex items-center space-x-4">
+
+
 
 
                 <!-- User Profile Dropdown -->
@@ -229,94 +233,94 @@
                 <p class="text-gray-400 text-xs">johndoe@example.com</p>
             </div>
         </div>
-        <div class="border-t border-gray-800 py-2">
-            <a href="#" class="block px-4 py-2 text-white hover:bg-gray-800">Your Profile</a>
-            <a href="#" class="block px-4 py-2 text-white hover:bg-gray-800">Settings</a>
-            <a href="#" class="block px-4 py-2 text-white hover:bg-gray-800">Favorites</a>
+        <div class=" border-t border-gray-800 py-2">
+                    <a href="#" class="block px-4 py-2 text-white hover:bg-gray-800">Your Profile</a>
+                    <a href="#" class="block px-4 py-2 text-white hover:bg-gray-800">Settings</a>
+                    <a href="#" class="block px-4 py-2 text-white hover:bg-gray-800">Favorites</a>
+                <div class="border-t border-gray-800 my-1"></div>
+                <a href="#" class="block px-4 py-2 text-red-400 hover:bg-gray-800">Sign out</a>
+            </div>
+
             <div class="border-t border-gray-800 my-1"></div>
-            <a href="#" class="block px-4 py-2 text-red-400 hover:bg-gray-800">Sign out</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="block w-full text-left px-4 py-2 text-red-400 hover:bg-gray-800">
+                    Sign out
+                </button>
+            </form>
         </div>
 
-        <div class="border-t border-gray-800 my-1"></div>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="block w-full text-left px-4 py-2 text-red-400 hover:bg-gray-800">
-                Sign out
-            </button>
-        </form>
-    </div>
-
-    <!-- Mobile Navigation Menu (Hidden by default) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-800">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-gray-800">Home</a>
-            <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-gray-800">Playlists</a>
-            <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-gray-800">Services</a>
-            <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-gray-800">About</a>
+        <!-- Mobile Navigation Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-gray-800">Home</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-gray-800">Playlists</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-gray-800">Services</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-gray-800">About</a>
+            </div>
         </div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Mobile menu toggle
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Mobile menu toggle
+                const menuBtn = document.getElementById('menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
 
-            // Mobile search toggle
-            const searchBtn = document.getElementById('mobile-search-btn');
-            const searchPanel = document.getElementById('mobile-search-panel');
+                // Mobile search toggle
+                const searchBtn = document.getElementById('mobile-search-btn');
+                const searchPanel = document.getElementById('mobile-search-panel');
 
-            // Mobile profile toggle
-            const profileBtn = document.getElementById('mobile-profile-btn');
-            const profilePanel = document.getElementById('mobile-profile-panel');
+                // Mobile profile toggle
+                const profileBtn = document.getElementById('mobile-profile-btn');
+                const profilePanel = document.getElementById('mobile-profile-panel');
 
-            // Desktop user dropdown toggle
-            const userMenuBtn = document.getElementById('user-menu-btn');
-            const userMenuDropdown = document.getElementById('user-menu-dropdown');
+                // Desktop user dropdown toggle
+                const userMenuBtn = document.getElementById('user-menu-btn');
+                const userMenuDropdown = document.getElementById('user-menu-dropdown');
 
-            // Toggle mobile menu
-            menuBtn.addEventListener('click', function () {
-                mobileMenu.classList.toggle('hidden');
-                // Hide other panels when menu is toggled
-                searchPanel.classList.add('hidden');
-                profilePanel.classList.add('hidden');
+                // Toggle mobile menu
+                menuBtn.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                    // Hide other panels when menu is toggled
+                    searchPanel.classList.add('hidden');
+                    profilePanel.classList.add('hidden');
+                });
+
+                // Toggle search panel
+                searchBtn.addEventListener('click', function () {
+                    searchPanel.classList.toggle('hidden');
+                    // Hide other panels when search is toggled
+                    mobileMenu.classList.add('hidden');
+                    profilePanel.classList.add('hidden');
+                });
+
+                // Toggle profile panel
+                profileBtn.addEventListener('click', function () {
+                    profilePanel.classList.toggle('hidden');
+                    // Hide other panels when profile is toggled
+                    mobileMenu.classList.add('hidden');
+                    searchPanel.classList.add('hidden');
+                });
+
+                // Toggle user dropdown on desktop
+                userMenuBtn.addEventListener('click', function () {
+                    userMenuDropdown.classList.toggle('hidden');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function (event) {
+                    const isClickInside = userMenuBtn.contains(event.target) || userMenuDropdown.contains(event.target);
+                    if (!isClickInside && !userMenuDropdown.classList.contains('hidden')) {
+                        userMenuDropdown.classList.add('hidden');
+                    }
+                });
             });
 
-            // Toggle search panel
-            searchBtn.addEventListener('click', function () {
-                searchPanel.classList.toggle('hidden');
-                // Hide other panels when search is toggled
-                mobileMenu.classList.add('hidden');
-                profilePanel.classList.add('hidden');
-            });
-
-            // Toggle profile panel
-            profileBtn.addEventListener('click', function () {
-                profilePanel.classList.toggle('hidden');
-                // Hide other panels when profile is toggled
-                mobileMenu.classList.add('hidden');
-                searchPanel.classList.add('hidden');
-            });
-
-            // Toggle user dropdown on desktop
-            userMenuBtn.addEventListener('click', function () {
-                userMenuDropdown.classList.toggle('hidden');
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function (event) {
-                const isClickInside = userMenuBtn.contains(event.target) || userMenuDropdown.contains(event.target);
-                if (!isClickInside && !userMenuDropdown.classList.contains('hidden')) {
-                    userMenuDropdown.classList.add('hidden');
-                }
-            });
-        });
 
 
 
 
-
-    </script>
+        </script>
 
 
 
