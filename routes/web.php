@@ -10,6 +10,7 @@ use App\Http\Controllers\listner\HomeController;
 use App\Http\Controllers\listner\ListnerProfileController;
 use App\Http\Controllers\Listner\PlaylistController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\visitor\VisitorController;
 use App\Models\Album;
 use App\Models\category;
 use App\Models\Track;
