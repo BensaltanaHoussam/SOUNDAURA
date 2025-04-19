@@ -22,7 +22,7 @@
 
                     <!-- Search Results Dropdown -->
                     <div id="search-results"
-                        class="hidden absolute left-0 right-0 mt-2 bg-gray-900 rounded-lg shadow-lg border border-gray-800 z-50 max-h-96 overflow-y-auto">
+                        class="hidden absolute left-0 right-0 mt-2 bg-black rounded-lg shadow-lg border border-gray-800 z-50 max-h-96 overflow-y-auto">
                     </div>
                 </div>
 
@@ -63,23 +63,25 @@
                                         // Add tracks section
                                         if (data.tracks && data.tracks.length > 0) {
                                             resultsHtml += `
-                                                <div class="p-2">
-                                                    <h3 class="text-xs text-gray-400 uppercase mb-2">Tracks</h3>
-                                                    <div class="space-y-2">
-                                            `;
+        <div class="p-2">
+            <h3 class="text-xs text-gray-400 uppercase mb-2">Tracks</h3>
+            <div class="space-y-2">
+    `;
                                             data.tracks.forEach(track => {
                                                 resultsHtml += `
-                                                    <a href="/listner/track/${track.id}" 
-                                                       class="flex items-center p-2 hover:bg-gray-800 rounded">
-                                                        <img src="${track.cover_image ? '/storage/' + track.cover_image : '/assets/img/default-track.jpg'}" 
-                                                             alt="${track.title}"
-                                                             class="w-10 h-10 object-cover rounded mr-3">
-                                                        <div>
-                                                            <div class="text-sm text-white">${track.title}</div>
-                                                            <div class="text-xs text-gray-400">${track.user.name}</div>
-                                                        </div>
-                                                    </a>
-                                                `;
+        <div 
+            onclick="playTrack('/storage/${track.audio_file}', '${track.title.replace(/'/g, "\\'")}', '${track.user.name.replace(/'/g, "\\'")}', '/storage/${track.cover_image}')"
+            class="flex items-center p-2 hover:bg-gray-800 rounded cursor-pointer">
+            <img src="/storage/${track.cover_image}" 
+                 alt="${track.title}"
+                 class="w-10 h-10 object-cover rounded mr-3"
+                 onerror="this.src='/assets/img/default-track.jpg'">
+            <div>
+                <div class="text-sm text-white">${track.title}</div>
+                <div class="text-xs text-gray-400">${track.user.name}</div>
+            </div>
+        </div>
+    `;
                                             });
                                             resultsHtml += `</div></div>`;
                                         }
@@ -106,13 +108,26 @@
                             }, 300);
                         });
 
-                        // Close results when clicking outside
+
                         document.addEventListener('click', function (event) {
                             if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
                                 searchResults.classList.add('hidden');
                             }
                         });
                     });
+
+                    // Function to play track
+                    function playTrack(audioUrl, title, artist, coverImage) {
+
+                        window.dispatchEvent(new CustomEvent('play-track', {
+                            detail: {
+                                url: audioUrl,
+                                title: title,
+                                artist: artist,
+                                cover: coverImage
+                            }
+                        }));
+                    }
                 </script>
 
 
