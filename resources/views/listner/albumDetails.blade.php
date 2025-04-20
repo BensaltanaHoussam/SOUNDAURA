@@ -52,8 +52,9 @@
                         </div>
 
                         <!-- Add to Playlist Button -->
-                        <div class="ml-4" @click.stop>
+                        <div class="ml-4 flex items-center" @click.stop>
                             <x-add-to-playlist-button :trackId="$track->id" />
+                                <x-like-button :track="$track" />
                         </div>
 
                     </div>
