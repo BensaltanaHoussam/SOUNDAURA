@@ -30,7 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
 </head>
 
-<body class="bg-darker text-white">
+<body class="bg-black text-white">
     <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
 
     <div class="font-[sans-serif] max-w-7xl mx-auto h-screen">
@@ -144,12 +144,12 @@
             </form>
 
             <div
-                class="h-full md:py-6 flex flex-col items-center justify-center relative max-md:before:hidden before:absolute before:bg-gradient-to-r before:from-black before:via-red-900 before:to-dark before:h-full before:w-3/4 before:right-0 before:z-0">
+                class="h-full md:py-6 flex flex-col items-center justify-center relative max-md:before:hidden before:absolute before:bg-gradient-to-r before:from-black before:via-red-900 before:to-black before:h-full before:w-3/4 before:right-0 before:z-0">
                 <div class="z-50 relative flex flex-col items-center lg:w-4/5 md:w-11/12">
                     <img src="{{ asset('assets/img/soundauraLogo.png') }}" class="w-48 mb-6 grayscale contrast-125"
                         alt="Logo" />
 
-                    <div class="bg-darkgray bg-opacity-80 p-6 rounded-lg text-center mb-8 w-full">
+                    <div class="bg-black bg-opacity-80 p-6 rounded-lg text-center mb-8 w-full">
                         <h2 class="text-white text-2xl font-bold mb-3">Join the SoundAura Community</h2>
                         <p class="text-gray-300 leading-relaxed">
                             Create an account to unlock exclusive access to premium music content. Whether you're an
