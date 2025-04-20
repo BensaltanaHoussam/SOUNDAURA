@@ -51,4 +51,15 @@ class Track extends Model
     }
 
 
+    public function isLikedBy(User $user)
+    {
+        return $this->likes()->where('user_id', $user->id)->exists();
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+
 }

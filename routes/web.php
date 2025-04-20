@@ -4,11 +4,11 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Artist\AlbumsController;
 use App\Http\Controllers\artist\ProfileController;
 use App\Http\Controllers\Artist\TracksController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Listner\CommentController;
 use App\Http\Controllers\listner\FavoriteController;
 use App\Http\Controllers\listner\FollowController;
 use App\Http\Controllers\listner\HomeController;
-use App\Http\Controllers\listner\LikeController;
 use App\Http\Controllers\listner\ListnerProfileController;
 use App\Http\Controllers\Listner\PlaylistController;
 use App\Http\Controllers\SearchController;
@@ -40,6 +40,9 @@ Route::get('/', [VisitorController::class, 'index'])->name('index');
 
 
 Route::get('/search', [SearchController::class, 'search'])->name('listner.search');
+
+Route::post('/tracks/{track}/like', [LikeController::class, 'toggleLike'])->name('tracks.like');
+
 
 
 
@@ -134,7 +137,8 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
     Route::get('/artist/{artist}/followers', [FollowController::class, 'followers'])->name('artist.followers');
     Route::get('/artist/{artist}/following', [FollowController::class, 'following'])->name('artist.following');
 
-    Route::post('/tracks/{track}/like', [LikeController::class, 'toggleLike'])->name('tracks.like');
+
+
 
 
 

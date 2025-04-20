@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\listner;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Like;
 use App\Models\Track;
+use App\Models\Like;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -12,33 +11,26 @@ class LikeController extends Controller
     public function toggleLike(Track $track)
     {
         if (!auth()->check()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Please login to like tracks'
-            ], 401);
+            return back()->with('error', 'Please login to like tracks');
         }
 
         $user = auth()->user();
+        
         $existing = Like::where('user_id', $user->id)
             ->where('track_id', $track->id)
             ->first();
 
         if ($existing) {
             $existing->delete();
-            $action = 'unliked';
+            $message = 'Track unliked successfully';
         } else {
             Like::create([
                 'user_id' => $user->id,
                 'track_id' => $track->id
             ]);
-            $action = 'liked';
+            $message = 'Track liked successfully';
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => "Successfully {$action} the track",
-            'isLiked' => $action === 'liked',
-            'likesCount' => $track->likes()->count()
-        ]);
+        return back()->with('success', $message);
     }
 }
