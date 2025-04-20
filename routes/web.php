@@ -8,6 +8,7 @@ use App\Http\Controllers\Listner\CommentController;
 use App\Http\Controllers\listner\FavoriteController;
 use App\Http\Controllers\listner\FollowController;
 use App\Http\Controllers\listner\HomeController;
+use App\Http\Controllers\listner\LikeController;
 use App\Http\Controllers\listner\ListnerProfileController;
 use App\Http\Controllers\Listner\PlaylistController;
 use App\Http\Controllers\SearchController;
@@ -132,6 +133,8 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
     Route::post('/follow/{artist}', [FollowController::class, 'toggleFollow'])->name('follow.toggle');
     Route::get('/artist/{artist}/followers', [FollowController::class, 'followers'])->name('artist.followers');
     Route::get('/artist/{artist}/following', [FollowController::class, 'following'])->name('artist.following');
+
+    Route::post('/tracks/{track}/like', [LikeController::class, 'toggleLike'])->name('tracks.like');
 
 
 
