@@ -15,12 +15,18 @@
                     <div class="flex-1">
                         <h1 class="text-2xl font-bold">{{ $user->name }}</h1>
                         <div class="flex items-center gap-1 mb-2">
-                            <span class="text-gray-400 text-sm">199000</span>
-
+                            <span class="text-gray-400 text-sm">{{ $user->followers()->count() }} followers</span>
                         </div>
-                        <p class="text-gray-300 text-sm">
+                        <p class="text-gray-300 text-sm mb-4">
                             {{ $user->bio ?? ' ' }}
                         </p>
+
+                        @auth
+                            @if(auth()->id() !== $user->id)
+                                <x-follow :user="$user" />
+                            @endif
+                        @endauth
+
                     </div>
                 </div>
 

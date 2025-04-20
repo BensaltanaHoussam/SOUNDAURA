@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Follow extends Model
 {
     protected $table = 'followers';
-
+    
     protected $fillable = [
         'follower_id',
-        'following_id'
+        'followed_id'
     ];
 
     public function follower()
@@ -18,8 +18,8 @@ class Follow extends Model
         return $this->belongsTo(User::class, 'follower_id');
     }
 
-    public function following()
+    public function followed()
     {
-        return $this->belongsTo(User::class, 'following_id');
+        return $this->belongsTo(User::class, 'followed_id');
     }
 }

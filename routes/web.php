@@ -6,6 +6,7 @@ use App\Http\Controllers\artist\ProfileController;
 use App\Http\Controllers\Artist\TracksController;
 use App\Http\Controllers\Listner\CommentController;
 use App\Http\Controllers\listner\FavoriteController;
+use App\Http\Controllers\listner\FollowController;
 use App\Http\Controllers\listner\HomeController;
 use App\Http\Controllers\listner\ListnerProfileController;
 use App\Http\Controllers\Listner\PlaylistController;
@@ -124,6 +125,13 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
 
     Route::post('/favorites', [FavoriteController::class, 'toggleFavorite'])->name('listner.favorites.toggle');
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('listner.favorites');
+
+
+
+
+    Route::post('/follow/{artist}', [FollowController::class, 'toggleFollow'])->name('follow.toggle');
+    Route::get('/artist/{artist}/followers', [FollowController::class, 'followers'])->name('artist.followers');
+    Route::get('/artist/{artist}/following', [FollowController::class, 'following'])->name('artist.following');
 
 
 

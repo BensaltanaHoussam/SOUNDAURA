@@ -159,7 +159,7 @@
 
                 @foreach($albums as $album)
                     <a href="{{ route('listner.album.details', ['album' => $album->id]) }}" class="group">
-                        <div class="relative overflow-hidden mb-3 bg-gray-900 border border-gray-800">
+                        <div class="h-[208px] overflow-hidden mb-3 bg-gray-900 border border-gray-800">
                             <img src="{{ asset('storage/' . $album->cover_image) }}" alt="{{ $album->title }}"
                                 class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
                         </div>
