@@ -56,6 +56,23 @@ class User extends Authenticatable
         return $this->belongsToMany(Track::class, 'favorites');
     }
 
+    public function followers()
+    {
+        return $this->hasMany(Follow::class, 'following_id');
+    }
+
+    public function following()
+    {
+        return $this->hasMany(Follow::class, 'follower_id');
+    }
+
+    public function isFollowing(User $user)
+    {
+        return $this->following()->where('following_id', $user->id)->exists();
+    }
+
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
