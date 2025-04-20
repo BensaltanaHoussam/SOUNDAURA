@@ -133,6 +133,97 @@
     </section>
 
 
+    <!-- Artist Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-8 lg:px-16">
+        <div class=" mb-16">
+            <h2 class="text-4xl md:text-5xl font-light text-black">
+                <span class="text-red-600">°</span>
+                <span class="text-red-600 font-semibold">Aura</span> artists
+            </h2>
+            <p class="text-gray-600 mt-4  mx-auto">
+                Discover the talented artists that are making waves on SoundAura
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Artist 1 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                <!-- Artist Image -->
+                <div class="aspect-[3/4] w-full">
+                    <img 
+                        src="{{ url('/assets/img/playboi.jpg') }}" 
+                        alt="Drake" 
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                </div>
+                
+                <!-- Hover Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 class="text-xl font-bold text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Playboi Carti</h3>
+                    <p class="text-red-500 font-medium translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Electronics/Rap</p>
+                    <p class="text-gray-300 text-sm mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">Chart-topping artist known for his versatile style and emotional lyrics.</p>
+                </div>
+            </div>
+
+            <!-- Artist 2 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                <div class="aspect-[3/4] w-full">
+                    <img 
+                        src="{{ url('/assets/img/yeat.webp') }}" 
+                        alt="Billie Eilish" 
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                </div>
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 class="text-xl font-bold text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Yeat</h3>
+                    <p class="text-red-500 font-medium translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Rage/Trap</p>
+                    <p class="text-gray-300 text-sm mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">Grammy-winning artist known for her haunting vocals and unique production.</p>
+                </div>
+            </div>
+
+            <!-- Artist 3 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                <div class="aspect-[3/4] w-full">
+                    <img 
+                        src="{{ url('/assets/img/destroy.jpg') }}" 
+                        alt="The Weeknd" 
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                </div>
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 class="text-xl font-bold text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300">The Weeknd</h3>
+                    <p class="text-red-500 font-medium translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">R&B/Pop</p>
+                    <p class="text-gray-300 text-sm mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">Innovative artist blending R&B, pop and electronic music with dark themes.</p>
+                </div>
+            </div>
+
+            <!-- Artist 4 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                <div class="aspect-[3/4] w-full">
+                    <img 
+                        src="{{ url('/assets/img/underground.jpg') }}" 
+                        alt="Doja Cat" 
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                </div>
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 class="text-xl font-bold text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Nettspend</h3>
+                    <p class="text-red-500 font-medium translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Underground/R&B</p>
+                    <p class="text-gray-300 text-sm mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">Versatile artist known for catchy hooks and genre-bending music.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
 
 
 
