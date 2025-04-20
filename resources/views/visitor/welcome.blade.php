@@ -288,7 +288,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Artist 1 -->
                 <div
-                    class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                    class="group relative overflow-hidden  shadow-lg transition-all duration-300 hover:shadow-xl">
                     <!-- Artist Image -->
                     <div class="aspect-[3/4] w-full">
                         <img src="{{ url('/assets/img/playboi.jpg') }}" alt="Drake"
@@ -312,7 +312,7 @@
 
                 <!-- Artist 2 -->
                 <div
-                    class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                    class="group relative overflow-hidden  shadow-lg transition-all duration-300 hover:shadow-xl">
                     <div class="aspect-[3/4] w-full">
                         <img src="{{ url('/assets/img/yeat.webp') }}" alt="Billie Eilish"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -334,7 +334,7 @@
 
                 <!-- Artist 3 -->
                 <div
-                    class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                    class="group relative overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
                     <div class="aspect-[3/4] w-full">
                         <img src="{{ url('/assets/img/destroy.jpg') }}" alt="The Weeknd"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -356,7 +356,7 @@
 
                 <!-- Artist 4 -->
                 <div
-                    class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                    class="group relative overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
                     <div class="aspect-[3/4] w-full">
                         <img src="{{ url('/assets/img/underground.jpg') }}" alt="Doja Cat"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
