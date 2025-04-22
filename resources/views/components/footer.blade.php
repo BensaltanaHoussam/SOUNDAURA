@@ -18,6 +18,13 @@
     <!-- Center section - Player controls -->
     <div class="flex flex-col items-center w-1/3">
         <div class="flex items-center space-x-4">
+            <!-- Previous button -->
+            <button id="prevBtn" class="text-white hover:text-red-500 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M4 4a.5.5 0 0 1 1 0v3.248l6.267-3.636c.54-.313 1.232.066 1.232.696v7.384c0 .63-.692 1.01-1.232.697L5 8.753V12a.5.5 0 0 1-1 0V4z" />
+                </svg>
+            </button>
             <button id="playPauseBtn"
                 class="bg-white text-black rounded-full w-8 h-8 flex items-center justify-center hover:scale-105">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -26,11 +33,18 @@
                         d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                 </svg>
             </button>
+            <!-- Next button -->
+            <button id="nextBtn" class="text-white hover:text-red-500 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.612C4.693 3.3 4 3.678 4 4.308v7.384c0 .63.692 1.01 1.233.697L11.5 8.753V12a.5.5 0 0 0 1 0V4z" />
+                </svg>
+            </button>
         </div>
         <div class="flex items-center w-full mt-2">
             <span id="currentTime" class="text-xs text-gray-400 mr-2">0:00</span>
-            <div class="w-full bg-gray-600 rounded-full h-1 mx-2">
-                <div id="progressBar" class="bg-white h-1 rounded-full" style="width: 0%"></div>
+            <div class="w-full bg-gray-600 rounded-full h-1 mx-2 hover:h-2 transition-all">
+                <div id="progressBar" class="bg-white h-full rounded-full relative" style="width: 0%"></div>
             </div>
             <span id="duration" class="text-xs text-gray-400 ml-2">0:00</span>
         </div>
@@ -55,21 +69,25 @@
     const trackTitle = document.getElementById('trackTitle');
     const trackArtist = document.getElementById('trackArtist');
     const trackCover = document.getElementById('trackCover');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressContainer = progressBar.parentElement;
 
-    // Play track 
-    window.playTrack = function (audioUrl, title, artist, coverUrl) {
-        trackTitle.textContent = title;
-        trackArtist.textContent = artist;
-        trackCover.src = coverUrl;
-        audioPlayer.src = audioUrl;
-
-
-        audioPlayer.play();
-        updatePlayPauseIcon(true);
+    // Format time helper
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
     }
 
+    // Update play/pause icon
+    function updatePlayPauseIcon(isPlaying) {
+        playPauseBtn.innerHTML = isPlaying
+            ? '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>'
+            : '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>';
+    }
 
-    // Play/Pause toggle
+    // Handle play/pause toggle
     playPauseBtn.addEventListener('click', function () {
         if (audioPlayer.paused) {
             audioPlayer.play();
@@ -80,35 +98,44 @@
         }
     });
 
-    // Update play button icon
-    function updatePlayPauseIcon(isPlaying) {
-        playPauseBtn.innerHTML = isPlaying
-            ? '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>'
-            : '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>';
-    }
+    // Load a track
+    window.playTrack = function (audioUrl, title, artist, coverUrl) {
+        trackTitle.textContent = title;
+        trackArtist.textContent = artist;
+        trackCover.src = coverUrl;
+        audioPlayer.src = audioUrl;
+        audioPlayer.play();
+        updatePlayPauseIcon(true);
+    };
 
-    // Time update handler
+    // Update progress + time
     audioPlayer.addEventListener('timeupdate', () => {
+        if (!audioPlayer.duration) return;
         const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
         progressBar.style.width = `${progress}%`;
         currentTime.textContent = formatTime(audioPlayer.currentTime);
     });
 
-
-    // Duration change handler
+    // Set total duration
     audioPlayer.addEventListener('loadedmetadata', () => {
         duration.textContent = formatTime(audioPlayer.duration);
     });
 
+    // Seek in progress bar
+    progressContainer.addEventListener('click', function (e) {
+        if (!audioPlayer.duration) return;
+
+        const rect = this.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const newTime = (clickX / rect.width) * audioPlayer.duration;
+
+        audioPlayer.currentTime = newTime;
+
+    });
+
     // Volume control
-    volumeControl.addEventListener('input', (e) => {
+    volumeControl.addEventListener('input', function (e) {
         audioPlayer.volume = e.target.value / 100;
     });
 
-    // Format time helper
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = Math.floor(seconds % 60);
-        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-    }
 </script>
