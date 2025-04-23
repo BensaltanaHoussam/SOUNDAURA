@@ -5,6 +5,7 @@ namespace App\Http\Controllers\listner;
 use App\Http\Controllers\Controller;
 use App\Models\Album;
 use App\Models\category;
+use App\Models\Track;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,9 +22,16 @@ class HomeController extends Controller
             ->take(2)
             ->get();
 
+        $trendingTracks = Track::withCount('likes')
+            ->with('user')
+            ->orderByDesc('likes_count')
+            ->whereBetween('created_at', [now()->subWeek(), now()])
+            ->take(6)
+            ->get();
+
         $categories = category::take(4)->get();
 
-        return view('listner.index', compact('artists', 'albums', 'categories'));
+        return view('listner.index', compact('artists', 'albums', 'categories','trendingTracks'));
     }
 
     public function showArtistProfile(User $user)
