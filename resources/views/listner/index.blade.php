@@ -229,7 +229,7 @@
     </section>
 
     <!-- Trending Tracks Grid -->
-    <section class="py-12 px-4 md:px-8 bg-black">
+    <section class="py-12 px-4 md:px-16 bg-black">
         <!-- Section Header -->
         <div class="flex items-center justify-between mb-8">
             <div class="flex items-center gap-3">
@@ -267,6 +267,7 @@
                         <!-- Play Button -->
                         <div class="absolute inset-0 flex items-center justify-center">
                             <button
+                                onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ $track->user->name }}', '{{ asset('storage/' . $track->cover_image) }}')"
                                 class=" bg-red-600 w-4 h-4 rounded-full flex items-center justify-center transform scale-75 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-red-700 shadow-lg">
                                 <i class="ri-play-circle-fill text-4xl"></i>
                             </button>
@@ -284,7 +285,8 @@
                     <!-- Track Info -->
                     <div class="px-1">
                         <h3 class="text-white font-medium text-sm truncate group-hover:text-red-500 transition-colors">
-                            {{ $track->title }}</h3>
+                            {{ $track->title }}
+                        </h3>
                         <div class="flex items-center justify-between mt-1">
                             <span class="text-zinc-400 text-xs truncate">{{ $track->user->name }}</span>
                             <div class="flex items-center gap-1">
@@ -312,6 +314,20 @@
             </div>
         @endif
     </section>
+
+
+    <script>
+        function playTrack(audioUrl, title, artist, coverImage) {
+            window.dispatchEvent(new CustomEvent('play-track', {
+                detail: {
+                    url: audioUrl,
+                    title: title,
+                    artist: artist,
+                    cover: coverImage
+                }
+            }));
+        }
+    </script>
 
 
 
