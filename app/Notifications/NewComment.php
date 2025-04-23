@@ -2,53 +2,37 @@
 
 namespace App\Notifications;
 
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class NewComment extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct()
+    public function __construct(
+        protected Comment $comment,
+        protected User $commenter
+    ) {}
+
+    public function via($notifiable): array
     {
-        //
+        return ['database'];
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
-    public function via(object $notifiable): array
-    {
-        return ['mail'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
+    public function toDatabase($notifiable): array
     {
         return [
-            //
+            'type' => 'new_comment',
+            'message' => "{$this->commenter->name} commented on your album: {$this->comment->album->title}",
+            'album_id' => $this->comment->album_id,
+            'album_title' => $this->comment->album->title,
+            'comment_id' => $this->comment->id,
+            'comment_text' => $this->comment->content,
+            'commenter_id' => $this->commenter->id,
+            'commenter_name' => $this->commenter->name,
+            'commenter_avatar' => $this->commenter->avatar ?? 'default-avatar.png'
         ];
     }
 }

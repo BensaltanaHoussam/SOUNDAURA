@@ -22,7 +22,7 @@
             </div>
 
             <!-- Artists Grid -->
-            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="grid grid-cols-3  md:grid-cols-4 lg:grid-cols-7 gap-4">
                 
 
                 <!-- Artist 2 -->

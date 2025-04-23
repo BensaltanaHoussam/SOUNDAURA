@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Listner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Album;
+use App\Notifications\NewComment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -16,11 +17,19 @@ class CommentController extends Controller
             'album_id' => 'required|exists:albums,id'
         ]);
 
-        Comment::create([
+        $comment = Comment::create([
             'content' => $validated['content'],
             'album_id' => $validated['album_id'],
             'user_id' => auth()->id()
         ]);
+
+        // Get the album and its artist
+        $album = Album::findOrFail($validated['album_id']);
+        
+        // Send notification if commenter is not the album owner
+        if ($album->user_id !== auth()->id()) {
+            $album->user->notify(new NewComment($comment, auth()->user()));
+        }
 
         return back()->with('success', 'Comment added successfully!');
     }
