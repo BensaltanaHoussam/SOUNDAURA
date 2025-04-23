@@ -7,7 +7,7 @@
 
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-3xl font-bold">My Music</h2>
+            <h2 class="text-3xl font-bold">My Music</h2>  
             <button onclick="openModal()"
                 class="bg-red-600 hover:bg-red-500 text-gray-200 px-4 py-2 rounded-md flex items-center gap-2">
                 Create
