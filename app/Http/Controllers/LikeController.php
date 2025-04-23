@@ -13,33 +13,36 @@ class LikeController extends Controller
     public function toggleLike(Track $track)
     {
         if (!auth()->check()) {
-            return back()->with('error', 'Please login to like tracks');
+            return response()->json([
+                'success' => false,
+                'message' => 'Please login to like tracks'
+            ], 401);
         }
 
         $user = auth()->user();
-        
         $existing = Like::where('user_id', $user->id)
             ->where('track_id', $track->id)
             ->first();
 
         if ($existing) {
             $existing->delete();
-            $message = 'Track unliked successfully';
+            $liked = false;
         } else {
             Like::create([
                 'user_id' => $user->id,
                 'track_id' => $track->id
             ]);
 
-            // Send notification to track owner if it's not the same user
             if ($track->user_id !== $user->id) {
-                // Pass both track and liker (current user) to the notification
                 $track->user->notify(new NewLike($track, $user));
             }
-
-            $message = 'Track liked successfully';
+            $liked = true;
         }
 
-        return back()->with('success', $message);
+        return response()->json([
+            'success' => true,
+            'liked' => $liked,
+            'likesCount' => $track->likes()->count()
+        ]);
     }
 }

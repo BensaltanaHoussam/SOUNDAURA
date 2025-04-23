@@ -119,6 +119,7 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
+    Route::post('/tracks/{track}/like', [LikeController::class, 'toggleLike'])->name('tracks.like');
 
     Route::get('/profile', [ListnerProfileController::class, 'edit'])->name('listner.profile.edit');
     Route::put('/profile', [ListnerProfileController::class, 'update'])->name('listner.profile.update');
