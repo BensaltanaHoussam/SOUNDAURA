@@ -10,12 +10,20 @@ class NotificationController extends Controller
     {
         $notification = auth()->user()->notifications()->findOrFail($id);
         $notification->markAsRead();
-        return back();
+        
+        return response()->json([
+            'success' => true,
+            'unreadCount' => auth()->user()->unreadNotifications()->count()
+        ]);
     }
 
     public function markAllAsRead()
     {
         auth()->user()->unreadNotifications->markAsRead();
-        return back();
+        
+        return response()->json([
+            'success' => true,
+            'unreadCount' => 0
+        ]);
     }
 }
