@@ -15,7 +15,7 @@ class TracksController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'audio_file' => 'required|file|mimes:mp3,wav',
-            'cover_image' => 'required|image|mimes:jpeg,png,jpg',
+            'cover_image' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:2048',
             'description' => 'nullable|string',
             'features' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
