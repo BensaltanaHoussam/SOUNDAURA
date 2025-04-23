@@ -11,6 +11,7 @@ use App\Http\Controllers\listner\FollowController;
 use App\Http\Controllers\listner\HomeController;
 use App\Http\Controllers\listner\ListnerProfileController;
 use App\Http\Controllers\Listner\PlaylistController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\visitor\VisitorController;
 use App\Models\Album;
@@ -42,8 +43,6 @@ Route::get('/', [VisitorController::class, 'index'])->name('index');
 Route::get('/search', [SearchController::class, 'search'])->name('listner.search');
 
 Route::post('/tracks/{track}/like', [LikeController::class, 'toggleLike'])->name('tracks.like');
-
-
 
 
 // Artist routes with middleware
