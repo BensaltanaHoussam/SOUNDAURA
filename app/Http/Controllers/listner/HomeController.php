@@ -29,9 +29,27 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
+
+        $hotContent = [
+            'tracks' => Track::withCount('likes')
+                ->orderByDesc('likes_count')
+                ->take(3)
+                ->get(),
+            'albums' => Album::withCount('tracks')
+                ->orderByDesc('created_at')
+                ->take(3)
+                ->get(),
+            'artists' => User::where('role', 'artiste')
+                ->withCount('followers')
+                ->orderByDesc('followers_count')
+                ->take(3)
+                ->get()
+        ];
+
+
         $categories = category::take(4)->get();
 
-        return view('listner.index', compact('artists', 'albums', 'categories','trendingTracks'));
+        return view('listner.index', compact('artists', 'albums', 'categories', 'trendingTracks', 'hotContent'));
     }
 
     public function showArtistProfile(User $user)

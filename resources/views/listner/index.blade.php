@@ -9,8 +9,9 @@
         <div class=" mx-auto px-6">
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-2xl font-bold text-white flex items-center">
-                    Top Artists
-                    <span class="ml-2 text-sm text-red-600">6</span>
+                    Aura Artists
+                    <span class="pr-1"></span>
+                    <i class="ri-fire-line text-red-500 font-extralight"></i>
                 </h2>
                 <a href="#" class="text-red-600 text-sm font-medium hover:text-red-500 transition-colors flex items-center">
                     See more
@@ -314,6 +315,9 @@
             </div>
         @endif
     </section>
+
+
+    
 
 
     <script>
