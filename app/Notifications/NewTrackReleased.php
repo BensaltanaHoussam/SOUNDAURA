@@ -2,22 +2,22 @@
 
 namespace App\Notifications;
 
+use App\Models\Track;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewTrackReleased extends Notification
+class NewTrackReleased extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        protected Track $track
+    ) {}
 
     /**
      * Get the notification's delivery channels.
@@ -26,7 +26,7 @@ class NewTrackReleased extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -35,9 +35,11 @@ class NewTrackReleased extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('New Track Released: ' . $this->track->title)
+            ->greeting('Hello ' . $notifiable->name . '!')
+            ->line($this->track->artist->name . ' has just released a new track: ' . $this->track->title)
+            ->action('Listen Now', url('/tracks/' . $this->track->id))
+            ->line('Thank you for using SoundAura!');
     }
 
     /**
@@ -48,7 +50,13 @@ class NewTrackReleased extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'type' => 'new_track',
+            'message' => $this->track->artist->name . ' has released a new track: ' . $this->track->title,
+            'track_id' => $this->track->id,
+            'artist_id' => $this->track->artist_id,
+            'cover_image' => $this->track->cover_image,
+            'track_title' => $this->track->title,
+            'artist_name' => $this->track->artist->name
         ];
     }
 }

@@ -84,6 +84,8 @@ class User extends Authenticatable
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 
+    
+
 
 
 
