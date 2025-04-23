@@ -33,6 +33,7 @@ class FollowController extends Controller
                 'follower_id' => $follower->id,
                 'followed_id' => $artist->id
             ]);
+     
             $message = 'Successfully followed the artist';
         }
 
