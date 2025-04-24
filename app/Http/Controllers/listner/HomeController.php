@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $artists = User::where('role', 'artiste')
             ->where('status', 'active')
-            ->take(6)
+            ->take(7)
             ->get();
 
         $albums = Album::with('user')

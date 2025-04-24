@@ -24,7 +24,7 @@ class ProfileController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'bio' => 'nullable|string|max:1000',
-            'profilePicture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+            'profilePicture' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:2048'
         ]);
 
         if ($request->hasFile('profilePicture')) {
