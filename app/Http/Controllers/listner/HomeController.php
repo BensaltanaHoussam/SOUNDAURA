@@ -55,7 +55,7 @@ class HomeController extends Controller
     public function showArtistProfile(User $user)
     {
         $tracks = $user->tracks()->with('album')->latest()->get();
-        $albums = $user->albums()->with('tracks')->latest()->get();
+        $albums = $user->albums()->with('tracks')->get();
 
         return view('listner.artistProfile', compact('user', 'tracks', 'albums'));
     }
