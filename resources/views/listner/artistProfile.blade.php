@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="bg-black text-white p-12">
+    <div class="bg-black text-white h-full p-12">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
             <div class="w-full md:w-2/5 flex flex-col pt-8 gap-4">
                 <!-- Artist Profile -->
