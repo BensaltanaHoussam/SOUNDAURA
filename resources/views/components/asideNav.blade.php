@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<aside class="border-r-white hidden sticky md:block bg-black p-6 top-0 h-screen">
+<aside class="border-r-white hidden sticky md:block bg-black p-6 top-0 ">
 
     <!-- Navigation Links -->
     <nav class="space-y-4">

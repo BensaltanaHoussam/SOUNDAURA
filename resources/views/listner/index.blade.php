@@ -224,56 +224,7 @@
 
 
 
-    <!-- Categories Section -->
-    <section class="py-12 px-4  md:px-8 bg-black border-t border-gray-900">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-bold text-white flex items-center">
-                    Categories
-                    <span class="ml-2 text-sm text-red-600">5</span>
-                </h2>
-                <a href="#" class="text-red-600 text-sm font-medium hover:text-red-500 transition-colors flex items-center">
-                    See more
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </a>
-            </div>
 
-            <!-- Categories Slider -->
-            <div class="relative">
-                <div class="overflow-hidden">
-                    <div class="flex space-x-4 pb-4">
-
-                        <!-- Category -->
-                        @foreach($categories as $category)
-                            <div class="group min-w-[200px] md:min-w-[250px] flex-shrink-0">
-                                <div class="relative overflow-hidden rounded-lg aspect-video mb-3 bg-gray-900">
-                                    <img src="{{ asset('assets/img/rage.jpeg') }}" alt="Rap Battles"
-                                        class="w-[300px]  h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                                    <div class="absolute bottom-0 left-0 p-4">
-                                        <h3 class="text-white font-bold text-lg">{{ $category->name }}</h3>
-                                        <p class="text-gray-300 text-sm">Rage Electronics tracks</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
-
-                <!-- Pagination dots -->
-                <div class="flex justify-center mt-6 space-x-2">
-                    <button class="w-8 h-2 rounded-full bg-gray-700"></button>
-                    <button class="w-8 h-2 rounded-full bg-gray-700"></button>
-                    <button class="w-8 h-2 rounded-full bg-red-600"></button>
-                    <button class="w-8 h-2 rounded-full bg-gray-700"></button>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
 
