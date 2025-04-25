@@ -3,8 +3,8 @@
 @section('content')
 
 
-    <div class="bg-black text-white p-12">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
+    <div class="bg-black text-white pt-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16">
             <div class="w-full md:w-2/5 flex flex-col pt-8 gap-4">
                 <!-- Artist Profile -->
                 <div class="flex gap-4 items-start">
@@ -112,23 +112,51 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     @foreach($randomContent['tracks'] as $track)
                         <div class="group">
-                            <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
+                            <!-- Track Cover -->
+                            <div
+                                class="relative aspect-square mb-3 bg-zinc-900 border border-zinc-800 rounded-md overflow-hidden shadow-lg">
+                                <!-- Cover Image -->
                                 <img src="{{ asset('storage/' . $track->cover_image) }}" alt="{{ $track->title }}"
-                                    class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                                    class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-75">
+
+                                <!-- Gradient Overlay -->
                                 <div
-                                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300">
+                                    class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                </div>
+
+                                <!-- Play Button -->
+                                <div class="absolute inset-0 flex items-center justify-center">
                                     <button
                                         onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ $track->user->name }}', '{{ asset('storage/' . $track->cover_image) }}')"
-                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                        <div class="bg-red-600 rounded-full p-3">
-                                            <i class="ri-play-fill text-2xl text-white"></i>
-                                        </div>
+                                        class=" bg-red-600 w-4 h-4 rounded-full flex items-center justify-center transform scale-75 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-red-700 shadow-lg">
+                                        <i class="ri-play-circle-fill text-4xl"></i>
                                     </button>
                                 </div>
+
+                                <!-- Duration Badge (if available) -->
+                                @if(isset($track->duration))
+                                    <div
+                                        class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        {{ $track->duration }}
+                                    </div>
+                                @endif
                             </div>
-                            <div class="text-center">
-                                <h3 class="text-white font-medium text-sm truncate">{{ $track->title }}</h3>
-                                <p class="text-gray-400 text-xs truncate">{{ $track->user->name }}</p>
+
+                            <!-- Track Info -->
+                            <div class="px-1">
+                                <h3 class="text-white font-medium text-sm truncate group-hover:text-red-500 transition-colors">
+                                    {{ $track->title }}
+                                </h3>
+                                <div class="flex items-center justify-between mt-1">
+                                    <span class="text-zinc-400 text-xs truncate">{{ $track->user->name }}</span>
+                                    <div class="flex items-center gap-1">
+                                        <svg class="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+                                        </svg>
+                                        <span class="text-zinc-400 text-xs">{{ $track->likes_count ?? 0 }}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -158,10 +186,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center">
-                                <h3 class="text-white font-medium text-sm">{{ $album->title }}</h3>
-                                <p class="text-gray-400 text-xs">By {{ $album->user->name }}</p>
-                            </div>
+
                         </a>
                     @endforeach
                 </div>
