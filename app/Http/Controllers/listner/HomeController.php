@@ -53,7 +53,7 @@ class HomeController extends Controller
                 ->take(4)
                 ->get()
         ];
-        
+
 
         $tracks = $user->tracks()->with('album')->latest()->take(7)->get();
         $albums = $user->albums()->with('tracks')->latest()->get();
@@ -65,6 +65,17 @@ class HomeController extends Controller
     {
         $album->load(['user', 'tracks']);
         return view('listner.albumDetails', compact('album'));
+    }
+
+
+    public function allSongs()
+    {
+        $songs = Track::with(['user', 'likes'])
+            ->withCount('likes')
+            ->orderBy('created_at', 'desc')
+            ->paginate(24);
+
+        return view('listner.all-songs', compact('songs'));
     }
 
 

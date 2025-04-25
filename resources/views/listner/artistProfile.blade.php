@@ -101,7 +101,7 @@
             <div class="mb-12">
                 <div class="flex items-center justify-between mb-8">
                     <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-                        Random Picks
+                        Recommended Picks
                         <span class="px-2 py-1 text-xs bg-red-600/20 text-red-500 rounded-full">Shuffle Play</span>
                     </h2>
                     <button onclick="window.location.reload()" class="text-red-600 hover:text-red-500 transition-colors">
@@ -167,7 +167,7 @@
             <div class="mt-16">
                 <div class="flex items-center justify-between mb-8">
                     <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-                        Random Albums
+                        Recommended Albums
                         <span class="px-2 py-1 text-xs bg-purple-600/20 text-purple-500 rounded-full">Discover</span>
                     </h2>
                 </div>
