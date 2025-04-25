@@ -136,6 +136,7 @@ Route::middleware(['auth', 'listner'])->prefix('listner')->group(function () {
     Route::get('/artist/{artist}/followers', [FollowController::class, 'followers'])->name('artist.followers');
     Route::get('/artist/{artist}/following', [FollowController::class, 'following'])->name('artist.following');
 
+    Route::get('/songs', [HomeController::class, 'allSongs'])->name('listner.all-songs');
 
 
 
