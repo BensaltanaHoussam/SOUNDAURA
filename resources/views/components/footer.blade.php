@@ -60,6 +60,7 @@
 </div>
 
 <script>
+    // Player elements
     const audioPlayer = document.getElementById('audioPlayer');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const progressBar = document.getElementById('progressBar');
@@ -72,6 +73,10 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const progressContainer = progressBar.parentElement;
+
+    // Track queue management
+    let currentTrackIndex = 0;
+    let trackQueue = [];
 
     // Format time helper
     function formatTime(seconds) {
@@ -87,8 +92,73 @@
             : '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>';
     }
 
-    // Handle play/pause toggle
-    playPauseBtn.addEventListener('click', function () {
+    // Save player state
+    function savePlayerState() {
+        const playerState = {
+            currentTrack: {
+                audioUrl: audioPlayer.src,
+                title: trackTitle.textContent,
+                artist: trackArtist.textContent,
+                coverUrl: trackCover.src
+            },
+            currentTime: audioPlayer.currentTime,
+            isPlaying: !audioPlayer.paused,
+            volume: audioPlayer.volume,
+            queue: trackQueue,
+            currentTrackIndex: currentTrackIndex
+        };
+        localStorage.setItem('playerState', JSON.stringify(playerState));
+    }
+
+    // Load player state
+    function loadPlayerState() {
+        const savedState = JSON.parse(localStorage.getItem('playerState'));
+        if (savedState) {
+            // Restore track info
+            trackTitle.textContent = savedState.currentTrack.title;
+            trackArtist.textContent = savedState.currentTrack.artist;
+            trackCover.src = savedState.currentTrack.coverUrl;
+            audioPlayer.src = savedState.currentTrack.audioUrl;
+            
+            // Restore volume
+            audioPlayer.volume = savedState.volume;
+            volumeControl.value = savedState.volume * 100;
+            
+            // Restore queue
+            trackQueue = savedState.queue || [];
+            currentTrackIndex = savedState.currentTrackIndex || 0;
+
+            // Restore playback position
+            audioPlayer.addEventListener('loadedmetadata', function() {
+                audioPlayer.currentTime = savedState.currentTime;
+                if (savedState.isPlaying) {
+                    audioPlayer.play();
+                    updatePlayPauseIcon(true);
+                }
+            }, { once: true });
+        }
+    }
+
+    // Play track function
+    window.playTrack = function(audioUrl, title, artist, coverUrl, addToQueue = true) {
+        const trackInfo = { audioUrl, title, artist, coverUrl };
+        
+        if (addToQueue) {
+            trackQueue.push(trackInfo);
+            currentTrackIndex = trackQueue.length - 1;
+        }
+
+        trackTitle.textContent = title;
+        trackArtist.textContent = artist;
+        trackCover.src = coverUrl;
+        audioPlayer.src = audioUrl;
+        audioPlayer.play();
+        updatePlayPauseIcon(true);
+        savePlayerState();
+    };
+
+    // Event Listeners
+    playPauseBtn.addEventListener('click', function() {
         if (audioPlayer.paused) {
             audioPlayer.play();
             updatePlayPauseIcon(true);
@@ -96,46 +166,73 @@
             audioPlayer.pause();
             updatePlayPauseIcon(false);
         }
+        savePlayerState();
     });
 
-    // Load a track
-    window.playTrack = function (audioUrl, title, artist, coverUrl) {
-        trackTitle.textContent = title;
-        trackArtist.textContent = artist;
-        trackCover.src = coverUrl;
-        audioPlayer.src = audioUrl;
-        audioPlayer.play();
-        updatePlayPauseIcon(true);
-    };
-
-    // Update progress + time
+    // Progress bar updates
     audioPlayer.addEventListener('timeupdate', () => {
         if (!audioPlayer.duration) return;
         const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
         progressBar.style.width = `${progress}%`;
         currentTime.textContent = formatTime(audioPlayer.currentTime);
+        savePlayerState();
     });
 
-    // Set total duration
+    // Duration update
     audioPlayer.addEventListener('loadedmetadata', () => {
         duration.textContent = formatTime(audioPlayer.duration);
     });
 
-    // Seek in progress bar
-    progressContainer.addEventListener('click', function (e) {
+    // Seek functionality
+    progressContainer.addEventListener('click', function(e) {
         if (!audioPlayer.duration) return;
-
         const rect = this.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const newTime = (clickX / rect.width) * audioPlayer.duration;
-
         audioPlayer.currentTime = newTime;
-
+        savePlayerState();
     });
 
     // Volume control
-    volumeControl.addEventListener('input', function (e) {
+    volumeControl.addEventListener('input', function(e) {
         audioPlayer.volume = e.target.value / 100;
+        savePlayerState();
     });
 
+    // Previous track
+    prevBtn.addEventListener('click', function() {
+        if (currentTrackIndex > 0) {
+            currentTrackIndex--;
+            const prevTrack = trackQueue[currentTrackIndex];
+            playTrack(prevTrack.audioUrl, prevTrack.title, prevTrack.artist, prevTrack.coverUrl, false);
+        }
+    });
+
+    // Next track
+    nextBtn.addEventListener('click', function() {
+        if (currentTrackIndex < trackQueue.length - 1) {
+            currentTrackIndex++;
+            const nextTrack = trackQueue[currentTrackIndex];
+            playTrack(nextTrack.audioUrl, nextTrack.title, nextTrack.artist, nextTrack.coverUrl, false);
+        }
+    });
+
+    // Auto-play next track
+    audioPlayer.addEventListener('ended', function() {
+        if (currentTrackIndex < trackQueue.length - 1) {
+            nextBtn.click();
+        }
+    });
+
+    // Handle errors
+    audioPlayer.addEventListener('error', function(e) {
+        console.error('Audio playback error:', e);
+        trackTitle.textContent = 'Error playing track';
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', loadPlayerState);
+
+    // Save state before page unload
+    window.addEventListener('beforeunload', savePlayerState);
 </script>
