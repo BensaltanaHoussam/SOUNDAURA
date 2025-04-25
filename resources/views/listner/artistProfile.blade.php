@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="bg-black text-white h-full p-12">
+    <div class="bg-black text-white p-12">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
             <div class="w-full md:w-2/5 flex flex-col pt-8 gap-4">
                 <!-- Artist Profile -->
@@ -52,12 +52,12 @@
                                     </div>
                                 </div>
 
-                               
+
 
                                 <!-- Add to Playlist Button -->
                                 <div class="ml-4 flex items-center  " @click.stop>
                                     <x-add-to-playlist-button :trackId="$track->id" />
-                                        <x-like-button :track="$track" />
+                                    <x-like-button :track="$track" />
                                 </div>
                             </div>
                         @endforeach
@@ -93,6 +93,84 @@
             </div>
         </div>
     </div>
+
+
+    <section class="py-12 px-4 md:px-8 bg-black border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            <!-- Random Tracks -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        Random Picks
+                        <span class="px-2 py-1 text-xs bg-red-600/20 text-red-500 rounded-full">Shuffle Play</span>
+                    </h2>
+                    <button onclick="window.location.reload()" class="text-red-600 hover:text-red-500 transition-colors">
+                        <i class="ri-shuffle-line text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    @foreach($randomContent['tracks'] as $track)
+                        <div class="group">
+                            <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
+                                <img src="{{ asset('storage/' . $track->cover_image) }}" alt="{{ $track->title }}"
+                                    class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                                <div
+                                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300">
+                                    <button
+                                        onclick="playTrack('{{ asset('storage/' . $track->audio_file) }}', '{{ $track->title }}', '{{ $track->user->name }}', '{{ asset('storage/' . $track->cover_image) }}')"
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                        <div class="bg-red-600 rounded-full p-3">
+                                            <i class="ri-play-fill text-2xl text-white"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-white font-medium text-sm truncate">{{ $track->title }}</h3>
+                                <p class="text-gray-400 text-xs truncate">{{ $track->user->name }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- Random Albums -->
+            <div class="mt-16">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        Random Albums
+                        <span class="px-2 py-1 text-xs bg-purple-600/20 text-purple-500 rounded-full">Discover</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    @foreach($randomContent['albums'] as $album)
+                        <a href="{{ route('listner.album.details', ['album' => $album->id]) }}" class="group">
+                            <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
+                                <img src="{{ asset('storage/' . $album->cover_image) }}" alt="{{ $album->title }}"
+                                    class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                    <div class="absolute bottom-3 left-3">
+                                        <h3 class="text-white font-medium">{{ $album->title }}</h3>
+                                        <p class="text-gray-300 text-sm">{{ $album->tracks_count }} tracks</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-white font-medium text-sm">{{ $album->title }}</h3>
+                                <p class="text-gray-400 text-xs">By {{ $album->user->name }}</p>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 
 
     <script>

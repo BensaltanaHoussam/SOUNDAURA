@@ -29,35 +29,36 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-
-        $hotContent = [
-            'tracks' => Track::withCount('likes')
-                ->orderByDesc('likes_count')
-                ->take(3)
-                ->get(),
-            'albums' => Album::withCount('tracks')
-                ->orderByDesc('created_at')
-                ->take(3)
-                ->get(),
-            'artists' => User::where('role', 'artiste')
-                ->withCount('followers')
-                ->orderByDesc('followers_count')
-                ->take(3)
-                ->get()
-        ];
-
-
         $categories = category::take(4)->get();
 
-        return view('listner.index', compact('artists', 'albums', 'categories', 'trendingTracks', 'hotContent'));
+
+
+        return view('listner.index', compact('artists', 'albums', 'categories', 'trendingTracks'));
     }
 
     public function showArtistProfile(User $user)
     {
+
+        $randomContent = [
+            'tracks' => Track::with('user')
+                ->withCount('likes')
+                ->where('user_id', '!=', $user->id) // Exclude current artist's tracks
+                ->inRandomOrder()
+                ->take(6)
+                ->get(),
+            'albums' => Album::with('user')
+                ->withCount('tracks')
+                ->where('user_id', '!=', $user->id) // Exclude current artist's albums
+                ->inRandomOrder()
+                ->take(4)
+                ->get()
+        ];
+        
+
         $tracks = $user->tracks()->with('album')->latest()->take(7)->get();
         $albums = $user->albums()->with('tracks')->latest()->get();
 
-        return view('listner.artistProfile', compact('user', 'tracks', 'albums'));
+        return view('listner.artistProfile', compact('user', 'tracks', 'albums', 'randomContent'));
     }
 
     public function showAlbumDetails(Album $album)
