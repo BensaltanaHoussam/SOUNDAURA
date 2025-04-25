@@ -13,12 +13,10 @@
                     <span class="pr-1"></span>
                     <i class="ri-fire-line text-red-500 font-extralight"></i>
                 </h2>
-                <a href="{{ route('listner.all-songs') }}"
-                    class="group flex items-center gap-1 text-red-600 text-sm font-medium hover:text-red-500 transition-colors">
-                    <span>See more</span>
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 transform transition-transform group-hover:translate-x-0.5" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
+                <a href="#" class="text-red-600 text-sm font-medium hover:text-red-500 transition-colors flex items-center">
+                    See more
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                 </a>
@@ -58,7 +56,7 @@
                 <span class="px-2 py-0.5 text-xs font-medium bg-red-600/20 text-red-500 rounded-full">6</span>
             </div>
 
-            <a href="#"
+            <a href="{{ route('listner.all-songs') }}"
                 class="group flex items-center gap-1 text-red-600 text-sm font-medium hover:text-red-500 transition-colors">
                 <span>See more</span>
                 <svg xmlns="http://www.w3.org/2000/svg"
