@@ -68,14 +68,21 @@ class HomeController extends Controller
     }
 
 
-    public function allSongs()
+    public function allSongs(Request $request)
     {
-        $songs = Track::with(['user', 'likes'])
-            ->withCount('likes')
-            ->orderBy('created_at', 'desc')
+        $query = Track::with(['user', 'category'])
+            ->withCount('likes');
+    
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+    
+        $songs = $query->orderBy('created_at', 'desc')
             ->paginate(24);
-
-        return view('listner.all-songs', compact('songs'));
+    
+        $categories = Category::all();
+    
+        return view('listner.all-songs', compact('songs', 'categories'));
     }
 
 
