@@ -119,17 +119,17 @@
             trackArtist.textContent = savedState.currentTrack.artist;
             trackCover.src = savedState.currentTrack.coverUrl;
             audioPlayer.src = savedState.currentTrack.audioUrl;
-            
+
             // Restore volume
             audioPlayer.volume = savedState.volume;
             volumeControl.value = savedState.volume * 100;
-            
+
             // Restore queue
             trackQueue = savedState.queue || [];
             currentTrackIndex = savedState.currentTrackIndex || 0;
 
             // Restore playback position
-            audioPlayer.addEventListener('loadedmetadata', function() {
+            audioPlayer.addEventListener('loadedmetadata', function () {
                 audioPlayer.currentTime = savedState.currentTime;
                 if (savedState.isPlaying) {
                     audioPlayer.play();
@@ -140,9 +140,9 @@
     }
 
     // Play track function
-    window.playTrack = function(audioUrl, title, artist, coverUrl, addToQueue = true) {
+    window.playTrack = function (audioUrl, title, artist, coverUrl, addToQueue = true) {
         const trackInfo = { audioUrl, title, artist, coverUrl };
-        
+
         if (addToQueue) {
             trackQueue.push(trackInfo);
             currentTrackIndex = trackQueue.length - 1;
@@ -158,7 +158,7 @@
     };
 
     // Event Listeners
-    playPauseBtn.addEventListener('click', function() {
+    playPauseBtn.addEventListener('click', function () {
         if (audioPlayer.paused) {
             audioPlayer.play();
             updatePlayPauseIcon(true);
@@ -184,7 +184,7 @@
     });
 
     // Seek functionality
-    progressContainer.addEventListener('click', function(e) {
+    progressContainer.addEventListener('click', function (e) {
         if (!audioPlayer.duration) return;
         const rect = this.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
@@ -194,13 +194,13 @@
     });
 
     // Volume control
-    volumeControl.addEventListener('input', function(e) {
+    volumeControl.addEventListener('input', function (e) {
         audioPlayer.volume = e.target.value / 100;
         savePlayerState();
     });
 
     // Previous track
-    prevBtn.addEventListener('click', function() {
+    prevBtn.addEventListener('click', function () {
         if (currentTrackIndex > 0) {
             currentTrackIndex--;
             const prevTrack = trackQueue[currentTrackIndex];
@@ -209,7 +209,7 @@
     });
 
     // Next track
-    nextBtn.addEventListener('click', function() {
+    nextBtn.addEventListener('click', function () {
         if (currentTrackIndex < trackQueue.length - 1) {
             currentTrackIndex++;
             const nextTrack = trackQueue[currentTrackIndex];
@@ -218,14 +218,14 @@
     });
 
     // Auto-play next track
-    audioPlayer.addEventListener('ended', function() {
+    audioPlayer.addEventListener('ended', function () {
         if (currentTrackIndex < trackQueue.length - 1) {
             nextBtn.click();
         }
     });
 
     // Handle errors
-    audioPlayer.addEventListener('error', function(e) {
+    audioPlayer.addEventListener('error', function (e) {
         console.error('Audio playback error:', e);
         trackTitle.textContent = 'Error playing track';
     });
@@ -235,4 +235,12 @@
 
     // Save state before page unload
     window.addEventListener('beforeunload', savePlayerState);
+
+    window.addEventListener('keyup', function (e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.mobile-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+        }
+    });
 </script>

@@ -23,6 +23,10 @@ class AnalaticsController extends Controller
                 ->orderBy('likes_count', 'desc')
                 ->take(5)
                 ->get(),
+            'recent_activities' => Track::with('user')
+                ->latest()
+                ->take(10)
+                ->get(),
 
 
         ];
