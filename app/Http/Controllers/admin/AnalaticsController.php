@@ -19,6 +19,11 @@ class AnalaticsController extends Controller
             'total_artists' => User::where('role', 'artiste')->count(),
             'total_tracks' => Track::count(),
             'total_albums' => Album::count(),
+            'most_liked_tracks' => Track::withCount('likes')
+                ->orderBy('likes_count', 'desc')
+                ->take(5)
+                ->get(),
+
 
         ];
 

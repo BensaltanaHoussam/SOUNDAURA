@@ -49,6 +49,34 @@
             <div class="text-sm text-gray-400">Released albums</div>
         </div>
 
+
+
+        <!-- Charts Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+
+            <!-- Most Liked Tracks -->
+            <div class="bg-zinc-900/50 p-6 rounded-xl border border-zinc-800">
+                <h3 class="text-lg font-bold mb-6">Most Popular Tracks</h3>
+                <div class="space-y-4">
+                    @foreach($stats['most_liked_tracks'] as $track)
+                        <div class="flex items-center gap-4">
+                            <img src="{{ asset('storage/' . $track->cover_image) }}" alt="{{ $track->title }}"
+                                class="w-12 h-12 object-cover rounded">
+                            <div class="flex-1">
+                                <div class="text-sm font-medium">{{ $track->title }}</div>
+                                <div class="text-xs text-gray-400">{{ $track->user->name }}</div>
+                            </div>
+                            <div class="flex items-center gap-1 text-red-500">
+                                <i class="ri-heart-fill"></i>
+                                <span class="text-sm">{{ number_format($track->likes_count) }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection
