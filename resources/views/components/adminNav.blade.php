@@ -22,8 +22,8 @@
         </div>
 
         <div class="px-4 py-2 text-sm">
-            <a href="{{ route('adminAnalytics') }}" 
-               class="flex items-center gap-3 p-2 rounded-md {{ request()->routeIs('analytics') ? 'bg-slate-800 bg-opacity-50 text-red-600' : 'text-white hover:bg-slate-800' }}">
+            <a href="{{ route('admin.analytics') }}" 
+               class="flex items-center gap-3 p-2 rounded-md {{ request()->routeIs('admin.analytics') ? 'bg-slate-800 bg-opacity-50 text-red-600' : 'text-white hover:bg-slate-800' }}">
                 <i class="fas fa-chart-line"></i>
                 <span>Analytics</span>
             </a>

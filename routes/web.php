@@ -11,6 +11,7 @@ use App\Http\Controllers\listner\FollowController;
 use App\Http\Controllers\listner\HomeController;
 use App\Http\Controllers\listner\ListnerProfileController;
 use App\Http\Controllers\Listner\PlaylistController;
+use App\Http\Controllers\admin\AnalaticsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\visitor\VisitorController;
@@ -88,9 +89,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         return view('admin.releaseDashboard');
     })->name('users');
 
-    Route::get('/analytics', function () {
-        return view('admin.adminAnalytics');
-    })->name('adminAnalytics');
+    Route::get('/analytics', [AnalaticsController::class, 'index'])->name('admin.analytics');
 
     Route::get('/categories', function () {
         return view('admin.categories');
