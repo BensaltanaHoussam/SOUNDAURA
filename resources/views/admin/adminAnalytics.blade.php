@@ -24,6 +24,19 @@
 
         </div>
 
+
+        <!-- Total Tracks -->
+        <div class="bg-zinc-900/50 p-6 rounded-xl border border-zinc-800">
+            <div class="flex items-center justify-between mb-4">
+                <div class="text-gray-400">Total Tracks</div>
+                <div class="bg-red-500/20 p-2 rounded-lg">
+                    <i class="ri-music-2-line text-red-500"></i>
+                </div>
+            </div>
+            <div class="text-3xl font-bold mb-2">{{ number_format($stats['total_tracks']) }}</div>
+            <div class="text-sm text-gray-400">Across all categories</div>
+        </div>
+
     </div>
 
 @endsection

@@ -17,6 +17,8 @@ class AnalaticsController extends Controller
         $stats = [
             'total_users' => User::count(),
             'total_artists' => User::where('role', 'artiste')->count(),
+            'total_tracks' => Track::count(),
+
         ];
 
         return view('admin.adminAnalytics', compact('stats'));
