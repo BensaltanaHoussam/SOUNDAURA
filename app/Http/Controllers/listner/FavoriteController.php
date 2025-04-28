@@ -27,7 +27,7 @@ class FavoriteController extends Controller
         $user = auth()->user();
         $track = Track::findOrFail($validated['track_id']);
 
-        if ($user->favoriteTracks()->where('track_id', $track->id)->exists()) {
+        if ($user->favoriteTracks()->wheyre('track_id', $track->id)->exists()) {
             $user->favoriteTracks()->detach($track->id);
             $message = 'Track removed from favorites';
         } else {

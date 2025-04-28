@@ -31,7 +31,7 @@
         </div>
 
         <!-- Tracklist -->
-        <div class="border border-red-600 rounded-lg overflow-hidden mb-8">
+        <div class="border border-gray-800 rounded-lg overflow-hidden mb-8">
             <div class="divide-y divide-gray-800">
                 @foreach($album->tracks as $track)
                     <div class="flex items-center p-3 hover:bg-gray-500/20"
