@@ -18,6 +18,7 @@ class AnalaticsController extends Controller
             'total_users' => User::count(),
             'total_artists' => User::where('role', 'artiste')->count(),
             'total_tracks' => Track::count(),
+            'total_albums' => Album::count(),
 
         ];
 

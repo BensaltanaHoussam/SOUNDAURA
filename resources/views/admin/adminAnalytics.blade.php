@@ -37,6 +37,18 @@
             <div class="text-sm text-gray-400">Across all categories</div>
         </div>
 
+        <!-- Total Albums -->
+        <div class="bg-zinc-900/50 p-6 rounded-xl border border-zinc-800">
+            <div class="flex items-center justify-between mb-4">
+                <div class="text-gray-400">Total Albums</div>
+                <div class="bg-purple-500/20 p-2 rounded-lg">
+                    <i class="ri-album-line text-purple-500"></i>
+                </div>
+            </div>
+            <div class="text-3xl font-bold mb-2">{{ number_format($stats['total_albums']) }}</div>
+            <div class="text-sm text-gray-400">Released albums</div>
+        </div>
+
     </div>
 
 @endsection
