@@ -32,7 +32,14 @@
                     Unique listeners
                 </div>
             </div>
-
+            <div class="bg-zinc-900/50 border border-zinc-800 rounded-lg p-6">
+                <div class="text-gray-400 text-sm mb-1">Recent Activity</div>
+                <div class="text-2xl font-bold">{{ number_format($stats['recent_activities']['new_likes']) }}</div>
+                <div class="flex items-center text-gray-400 text-sm mt-2">
+                    <i class="ri-heart-line mr-1"></i>
+                    New likes this month
+                </div>
+            </div>
 
 
 
