@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Artist\AlbumsController;
+use App\Http\Controllers\Artist\AnalyticsController;
 use App\Http\Controllers\artist\ProfileController;
 use App\Http\Controllers\Artist\TracksController;
 use App\Http\Controllers\LikeController;
@@ -67,11 +68,8 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
     Route::post('/albums', [AlbumsController::class, 'store'])->name('artist.albums.store');
 
 
-
-
-    Route::get('/analytics', function () {
-        return view('artist.analytics');
-    })->name('analytics');
+    Route::get('analytics', [AnalyticsController::class, 'index'])
+        ->name('analytics');
 
     Route::get('/reviews', function () {
         return view('artist.reviews');
