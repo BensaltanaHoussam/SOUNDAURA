@@ -15,8 +15,9 @@ class AnalyticsController extends Controller
         
         $stats = [
             'followers_count' => $user->followers()->count(),
-
-
+            'new_followers' => $user->followers()
+                ->whereBetween('followers.created_at', [now()->subMonth(), now()])
+                ->count(),
                     ];
 
         return view('artist.analytics', compact('stats'));
