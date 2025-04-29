@@ -48,11 +48,41 @@
                     Times added to playlists
                 </div>
             </div>
+        </div>
 
 
-
-
-
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 mb-6">
+            <h3 class="text-lg font-bold mb-4">Top Tracks</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-left text-gray-400 border-b border-zinc-800">
+                            <th class="pb-3 pl-2">TITLE</th>
+                            <th class="pb-3">LIKES</th>
+                            <th class="pb-3">PLAYLISTS</th>
+                            <th class="pb-3">RELEASE DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($stats['top_tracks'] as $track)
+                            <tr class="border-b border-zinc-800 hover:bg-zinc-800/50">
+                                <td class="py-4 pl-2">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-zinc-800 rounded overflow-hidden">
+                                            <img src="{{ asset('storage/' . $track->cover_image) }}" alt="{{ $track->title }}"
+                                                class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="font-medium">{{ $track->title }}</div>
+                                    </div>
+                                </td>
+                                <td class="text-gray-400">{{ number_format($track->likes_count) }}</td>
+                                <td class="text-gray-400">{{ number_format($track->playlists_count) }}</td>
+                                <td class="text-gray-400">{{ $track->created_at->format('M d, Y') }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
