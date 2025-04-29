@@ -38,4 +38,20 @@ class AnalyticsController extends Controller
 
 
 
+
+    private function getRecentActivities()
+    {
+        return collect([
+            'new_likes' => DB::table('likes')
+                ->join('tracks', 'likes.track_id', '=', 'tracks.id')
+                ->where('tracks.user_id', auth()->id())
+                ->whereBetween('likes.created_at', [now()->subDays(30), now()])
+                ->count(),
+        ]);
+    }
+
+
+
+
+
 }
