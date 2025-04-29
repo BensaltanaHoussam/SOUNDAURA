@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Artist\AlbumsController;
 use App\Http\Controllers\Artist\AnalyticsController;
 use App\Http\Controllers\artist\ProfileController;
+use App\Http\Controllers\artist\ReviewController;
 use App\Http\Controllers\Artist\TracksController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Listner\CommentController;
@@ -70,10 +71,10 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
 
     Route::get('analytics', [AnalyticsController::class, 'index'])
         ->name('analytics');
+    
 
-    Route::get('/reviews', function () {
-        return view('artist.reviews');
-    })->name('reviews');
+    Route::get('/reviews', [ReviewController::class, 'index'])
+        ->name('reviews');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('artist.profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('artist.profile.update');
