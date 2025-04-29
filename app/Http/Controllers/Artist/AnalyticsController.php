@@ -48,6 +48,12 @@ class AnalyticsController extends Controller
                 ->where('tracks.user_id', auth()->id())
                 ->whereBetween('likes.created_at', [now()->subDays(30), now()])
                 ->count(),
+
+            'playlist_adds' => DB::table('playlist_track')
+                ->join('tracks', 'playlist_track.track_id', '=', 'tracks.id')
+                ->where('tracks.user_id', auth()->id())
+                ->whereBetween('playlist_track.created_at', [now()->subDays(30), now()])
+                ->count(),
         ]);
     }
 

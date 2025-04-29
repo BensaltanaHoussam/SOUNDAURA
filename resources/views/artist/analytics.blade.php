@@ -40,6 +40,14 @@
                     New likes this month
                 </div>
             </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 rounded-lg p-6">
+                <div class="text-gray-400 text-sm mb-1">Playlist Adds</div>
+                <div class="text-2xl font-bold">{{ number_format($stats['recent_activities']['playlist_adds']) }}</div>
+                <div class="flex items-center text-gray-400 text-sm mt-2">
+                    <i class="ri-playlist-line mr-1"></i>
+                    Times added to playlists
+                </div>
+            </div>
 
 
 
