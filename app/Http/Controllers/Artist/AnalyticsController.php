@@ -20,6 +20,11 @@ class AnalyticsController extends Controller
                 ->count(),
             'monthly_listeners' => $this->getMonthlyListeners(),
             'recent_activities' => $this->getRecentActivities(),
+            'top_tracks' => Track::where('user_id', $user->id)
+                ->withCount(['likes', 'playlists'])
+                ->orderByDesc('likes_count')
+                ->take(5)
+                ->get(),
 
         ];
 
