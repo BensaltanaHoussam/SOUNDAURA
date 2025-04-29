@@ -29,9 +29,8 @@ class AnalyticsController extends Controller
 
     private function getMonthlyListeners()
     {
-        // This is a placeholder. Implement actual listener tracking
         return auth()->user()->tracks()
-            ->withCount('likes')
+            ->withCount(relations: 'likes')
             ->get()
             ->sum('likes_count');
     }
