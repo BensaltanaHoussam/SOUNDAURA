@@ -19,6 +19,7 @@ class AnalyticsController extends Controller
                 ->whereBetween('followers.created_at', [now()->subMonth(), now()])
                 ->count(),
             'monthly_listeners' => $this->getMonthlyListeners(),
+            'recent_activities' => $this->getRecentActivities(),
 
         ];
 
