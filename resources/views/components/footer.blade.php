@@ -241,6 +241,16 @@
             document.querySelectorAll('.mobile-panel').forEach(panel => {
                 panel.classList.remove('active');
             });
+        } else if (e.key === ' ') {
+            e.preventDefault(); 
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                updatePlayPauseIcon(true);
+            } else {
+                audioPlayer.pause();
+                updatePlayPauseIcon(false);
+            }
+            savePlayerState();
         }
     });
 </script>
