@@ -6,17 +6,17 @@
     
     <button type="button" 
             onclick="toggleLike(this)" 
-            class="group flex items-center gap-1 text-sm {{ auth()->check() && $track->isLikedBy(auth()->user()) ? 'text-red-600' : 'text-gray-400' }}">
+            class="group flex items-center gap-1 w-[25px] text-[15px] {{ auth()->check() && $track->isLikedBy(auth()->user()) ? 'text-red-600' : 'text-gray-400' }}">
         <svg xmlns="http://www.w3.org/2000/svg" 
              class="h-5 w-5 transition-colors group-hover:text-red-600" 
              fill="{{ auth()->check() && $track->isLikedBy(auth()->user()) ? 'currentColor' : 'none' }}" 
              viewBox="0 0 24 24" 
              stroke="currentColor">
-            <path stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+             
+             <path d="M12 2C10 6 14 7 14 11c0 2-2 3-2 6 0 2 2 3 2 3s4-1 4-6c0-3-1-5-1-5s3 1 3 6c0 6-5 8-8 8s-8-2-8-8c0-6 6-11 6-11z"/>
         </svg>
+
+          
         <span class="likes-count transition-colors group-hover:text-red-600">{{ $track->likes()->count() }}</span>
     </button>
 </div>
@@ -24,7 +24,7 @@
 <script>
 function toggleLike(button) {
     const container = button.closest('.like-button');
-    const trackId = container.dataset.trackId;
+    const trackId = container.dataset.trackId;  
     const isLiked = container.dataset.liked === 'true';
     const svg = button.querySelector('svg');
     const likesCount = button.querySelector('.likes-count');

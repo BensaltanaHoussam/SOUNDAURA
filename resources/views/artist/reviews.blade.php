@@ -22,6 +22,12 @@
             <button class="bg-black hover:bg-slate-600 px-6 py-2 rounded-full">Deleted</button>
         </div>
 
+        <!-- Search Bar -->
+        <div class="relative mb-6">
+            <i class="fas fa-search absolute left-3 top-3 text-slate-500"></i>
+            <input type="text" placeholder="Search title, artist"
+                class="w-full bg-black border border-slate-700 rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-1 focus:ring-slate-600">
+        </div>
 
         <!-- Layout Toggle -->
         <div class="flex justify-between items-center mb-4">
@@ -55,7 +61,7 @@
                         <tr class="border-b border-slate-800 hover:bg-black">
                             <td class="pl-4">
                                 <button onclick="toggleComments('comments-{{ $album->id }}')"
-                                    class="w-8 h-8 flex items-center justify-center rounded-full bg-black border hover:bg-slate-600 transition-colors">
+                                    class="w-6 h-6 flex items-center justify-center rounded-full bg-black border hover:bg-slate-600 transition-colors">
                                     <i class="ri-arrow-down-s-line"></i>
                                 </button>
                             </td>
@@ -79,7 +85,7 @@
                                 <div class="space-y-4 ml-14">
                                     @forelse($album->comments as $comment)
                                         <div class="flex items-start gap-3 p-3 rounded-lg bg-black/30">
-                                            <img src="{{ asset('assets/img/profile.jpg') }}" class="w-8 h-8 rounded-full">
+                                            <img src="{{ $comment->user->profile_picture ? asset('storage/' . $comment->user->profile_picture) : asset('assets/img/profile.jpg') }}" class="w-8 h-8 rounded-full">
                                             <div>
                                                 <div class="flex items-center gap-2">
                                                     <span class="font-medium text-white">{{ $comment->user->name }}</span>

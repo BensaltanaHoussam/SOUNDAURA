@@ -13,6 +13,7 @@
             <div id="trackTitle" class="text-sm font-semibold">Select a track</div>
             <div id="trackArtist" class="text-xs text-gray-400">Artist name</div>
         </div>
+
     </div>
 
     <!-- Center section - Player controls -->
@@ -242,7 +243,7 @@
                 panel.classList.remove('active');
             });
         } else if (e.key === ' ') {
-            e.preventDefault(); 
+            e.preventDefault();
             if (audioPlayer.paused) {
                 audioPlayer.play();
                 updatePlayPauseIcon(true);
