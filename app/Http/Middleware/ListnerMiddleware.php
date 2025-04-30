@@ -2,18 +2,22 @@
 
 namespace App\Http\Middleware;
 
+use Auth;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ListnerMiddleware
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next): Response // Add Response type hint
     {
-        if (auth()->check() && auth()->user()->role === 'listner') {
-            return $next($request);
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
 
-        return redirect()->route('login');
+        if (Auth::user()->role !== 'listner') {
+            abort(403, 'Unauthorized action.');
+        }
+        return $next($request);
     }
 }
