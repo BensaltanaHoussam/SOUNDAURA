@@ -148,56 +148,6 @@
 
             <!-- album Grid -->
             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-
-
-                <!-- Artist 2 -->
-                <div class="group">
-                    <div class="relative overflow-hidden  aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/lyfe.webp') }}" alt="Artist 2"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Lyfe</h3>
-                        <p class="text-gray-400 text-xs">189 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
-                <!-- Artist 3 -->
-                <div class="group">
-                    <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/spili.jpg') }}" alt="Artist 3"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">if looks could kill</h3>
-                        <p class="text-gray-400 text-xs">222 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
-                <!-- Artist 4 -->
-                <div class="group">
-                    <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/yezus.jpg') }}" alt="Artist 4"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Yeezus</h3>
-                        <p class="text-gray-400 text-xs">152 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
-                <!-- Artist 5 -->
-                <div class="group">
-                    <div class="relative overflow-hidden aspect-square mb-3 bg-gray-900 border border-gray-800">
-                        <img src="{{ asset('assets/img/ChopSuey.webp') }}" alt="Artist 5"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-sm">Pink Tape</h3>
-                        <p class="text-gray-400 text-xs">201 <span class="text-red-600">aura</span></p>
-                    </div>
-                </div>
-
                 @foreach($albums as $album)
                     <a href="{{ route('listner.album.details', ['album' => $album->id]) }}" class="group">
                         <div class="h-[208px] overflow-hidden mb-3 bg-gray-900 border border-gray-800">

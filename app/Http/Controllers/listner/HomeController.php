@@ -19,7 +19,7 @@ class HomeController extends Controller
             ->get();
 
         $albums = Album::with('user')
-            ->take(2)
+            ->take(6)
             ->get();
 
         $trendingTracks = Track::withCount('likes')
