@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Notifications\NewTrackReleased;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Storage;
 
 
 class TracksController extends Controller
@@ -61,6 +62,30 @@ class TracksController extends Controller
         } catch (\Exception $e) {
             Log::error('Track upload error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Failed to upload track.');
+        }
+    }
+
+
+    public function destroy(Track $track)
+    {
+
+        if ($track->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+        if ($track->cover_image && Storage::disk('public')->exists($track->cover_image)) {
+            Storage::disk('public')->delete($track->cover_image);
+        }
+        if ($track->audio_file && Storage::disk('public')->exists($track->audio_file)) {
+            Storage::disk('public')->delete($track->audio_file);
+        }
+
+        $deleted = $track->delete();
+
+        if ($deleted) {
+            return redirect()->back()->with('success', 'Track deleted successfully.');
+        } else {
+            Log::warning("Attempted to delete track {$track->id} but delete() returned false.");
+            return redirect()->back()->with('error', 'Failed to delete track record.');
         }
     }
 }

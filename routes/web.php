@@ -58,6 +58,7 @@ Route::middleware(['artist'])->prefix('artist')->group(function () {
         return view('artist.songsDashboard', compact('categories', 'tracks'));
     })->name('songsDashboard');
     Route::post('/songs', [TracksController::class, 'store'])->name('artist.tracks.store');
+    Route::delete('/tracks/{track}', [TracksController::class, 'destroy'])->name('artist.tracks.destroy'); 
 
 
 
