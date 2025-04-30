@@ -33,6 +33,11 @@ class LikeController extends Controller
                 'track_id' => $track->id
             ]);
 
+            $artist = $track->user;
+            if (auth()->id() !== $artist->id) {
+                $artist->increment('aura', 50);
+            }
+
             if ($track->user_id !== $user->id) {
                 $track->user->notify(new NewLike($track, $user));
             }
