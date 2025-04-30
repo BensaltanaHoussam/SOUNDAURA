@@ -40,8 +40,9 @@ class TracksController extends Controller
             ]);
 
 
-            $artist = auth()->user();
-            $artist->addAura(200);
+            $artist = auth()->user(); // Or $track->user if appropriate
+            $artist->increment('aura', 200);
+
 
 
             // Get and notify followers

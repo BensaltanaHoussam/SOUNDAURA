@@ -13,7 +13,7 @@ class AlbumsController extends Controller
     public function store(Request $request)
     {
         DB::beginTransaction();
-        
+
 
         $album = Album::create([
             'user_id' => auth()->id(),
@@ -22,6 +22,7 @@ class AlbumsController extends Controller
             'description' => $request->description,
             'cover_image' => $request->file('cover_image')->store('covers', 'public')
         ]);
+
 
         // Store each track
         foreach ($request->songs as $songData) {
