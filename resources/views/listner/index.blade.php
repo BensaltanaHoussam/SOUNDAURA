@@ -33,9 +33,12 @@
                                 alt="{{ $artist->name }}"
                                 class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-300">
                         </div>
-                        <div class="text-center">
+                        <div class="text-center flex flex-col items-center">
                             <h3 class="text-white font-medium text-sm">{{ $artist->name }}</h3>
-                            <p class="text-gray-400 text-xs">{{ $artist->tracks_count ?? 0 }} Tracks</p>
+                            <span class="text-red-600 text-sm flex items-center gap-1" title="Artist Aura">
+                                <i class="ri-fire-line"></i>
+                                {{ number_format($artist->aura) }} 
+                            </span>
                         </div>
                     </a>
                 @endforeach

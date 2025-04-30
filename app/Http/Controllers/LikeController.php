@@ -20,6 +20,7 @@ class LikeController extends Controller
         }
 
         $user = auth()->user();
+        $artist = $track->user;
         $existing = Like::where('user_id', $user->id)
             ->where('track_id', $track->id)
             ->first();
@@ -27,6 +28,14 @@ class LikeController extends Controller
         if ($existing) {
             $existing->delete();
             $liked = false;
+
+
+            if ($artist->aura >= 50) {
+                $artist->decrement('aura', 50);
+            } else {
+                // Optionally set to 0 if it would go negative
+                $artist->update(['aura' => 0]);
+            }
         } else {
             Like::create([
                 'user_id' => $user->id,

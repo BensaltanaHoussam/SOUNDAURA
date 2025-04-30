@@ -8,18 +8,29 @@
             <div class="w-full md:w-2/5 flex flex-col pt-8 gap-4">
                 <!-- Artist Profile -->
                 <div class="flex gap-4 items-start">
+
                     <div class="w-32 h-32 rounded-full overflow-hidden flex-shrink-0">
                         <img src="{{ $user->profilePicture ? asset('storage/' . $user->profilePicture) : asset('assets/img/profile.jpg') }}"
                             alt="{{ $user->name }}" class="w-full h-full object-cover">
+
                     </div>
+
                     <div class="flex-1">
-                        <h1 class="text-2xl font-bold">{{ $user->name }}</h1>
+                        <div class="flex items-center gap-2 mb-2">
+                            <h1 class="text-2xl font-bold">{{ $user->name }}</h1>
+                            <span class="text-red-600 text-sm flex items-center gap-1" title="Artist Aura">
+                                <i class="ri-fire-line"></i>
+                                {{ number_format($user->aura) }} Aura 
+                            </span>
+                        </div>
                         <div class="flex items-center gap-1 mb-2">
                             <span class="text-gray-400 text-sm">{{ $user->followers()->count() }} followers</span>
                         </div>
+
                         <p class="text-gray-300 text-sm mb-4">
                             {{ $user->bio ?? ' ' }}
                         </p>
+
 
                         @auth
                             @if(auth()->id() !== $user->id)
