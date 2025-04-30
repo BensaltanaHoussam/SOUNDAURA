@@ -28,13 +28,20 @@ class FollowController extends Controller
         if ($existing) {
             $existing->delete();
             $message = 'Successfully unfollowed the artist';
+
+            if ($artist->aura >= 150) {
+                $artist->decrement('aura', 150);
+            } else {
+                $artist->update(['aura' => 0]); 
+            }
         } else {
             Follow::create([
                 'follower_id' => $follower->id,
                 'followed_id' => $artist->id
             ]);
-     
+
             $message = 'Successfully followed the artist';
+            $artist->increment('aura', 150);
         }
 
         return back()->with('success', $message);
