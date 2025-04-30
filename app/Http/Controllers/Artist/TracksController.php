@@ -9,8 +9,11 @@ use App\Notifications\NewTrackReleased;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+
 class TracksController extends Controller
 {
+
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -36,11 +39,16 @@ class TracksController extends Controller
                 'audio_file' => $request->file('audio_file')->store('tracks', 'public'),
             ]);
 
+
+            $artist = auth()->user();
+            $artist->addAura(200);
+
+
             // Get and notify followers
-            $followers = User::whereIn('id', function($query) {
+            $followers = User::whereIn('id', function ($query) {
                 $query->select('follower_id')
-                      ->from('followers')
-                      ->where('followed_id', auth()->id());
+                    ->from('followers')
+                    ->where('followed_id', auth()->id());
             })->get();
 
             foreach ($followers as $follower) {
