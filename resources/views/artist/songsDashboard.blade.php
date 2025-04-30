@@ -93,9 +93,14 @@
                                     <button class="text-slate-400 hover:text-white">
                                         <i class="ri-edit-box-fill"></i>
                                     </button>
-                                    <button class="text-red-500 hover:text-red-400">
-                                        <i class="ri-delete-bin-fill"></i>
-                                    </button>
+                                    <form action="{{ route('artist.tracks.destroy', $track->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this track? This action cannot be undone.');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-400">
+                                            <i class="ri-delete-bin-fill"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

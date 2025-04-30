@@ -32,8 +32,9 @@
                             <img src="{{ auth()->user()->profilePicture ? asset('storage/' . auth()->user()->profilePicture) : asset('assets/img/profile.jpg') }}"
                                 alt="Profile Picture" class="w-full h-full object-cover" id="profilePreview">
                         </div>
+
                         <label
-                            class="bg-red-600 hover:bg-slate-600 text-white px-4 py-2 rounded-md text-sm cursor-pointer">
+                            class=" text-red-600 px-4 py-2 rounded-md text-sm cursor-pointer">
                             Change Photo
                             <input type="file" name="profilePicture" class="hidden" accept="image/*"
                                 onchange="previewImage(event)">
