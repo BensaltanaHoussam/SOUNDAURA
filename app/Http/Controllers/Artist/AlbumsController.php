@@ -23,6 +23,8 @@ class AlbumsController extends Controller
             'cover_image' => $request->file('cover_image')->store('covers', 'public')
         ]);
 
+        $artist = auth()->user(); // Or $album->user
+        $artist->increment('aura', 1000);
 
         // Store each track
         foreach ($request->songs as $songData) {
