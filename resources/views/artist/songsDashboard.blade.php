@@ -9,9 +9,8 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-3xl font-bold">My Music</h2>
             <button onclick="openModal()"
-                class="bg-red-600 hover:bg-red-500 text-gray-200 px-4 py-2 rounded-md flex items-center gap-2">
-                Create
-                <i class="fas fa-plus"></i>
+                class="bg-black border hover:bg-red-600 transform duration-300 text-gray-200 px-4 py-2 rounded-md flex items-center gap-2">
+                Create +
             </button>
         </div>
 
@@ -22,12 +21,7 @@
             <button class="bg-black hover:bg-slate-600 px-6 py-2 rounded-full">Deleted</button>
         </div>
 
-        <!-- Search Bar -->
-        <div class="relative mb-6">
-            <i class="fas fa-search absolute left-3 top-3 text-slate-500"></i>
-            <input type="text" placeholder="Search title, artist"
-                class="w-full bg-black border border-slate-700 rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-1 focus:ring-slate-600">
-        </div>
+
 
         <!-- Layout Toggle -->
         <div class="flex justify-between items-center mb-4">
