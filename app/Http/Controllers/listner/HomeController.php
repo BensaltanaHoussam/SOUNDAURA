@@ -15,6 +15,7 @@ class HomeController extends Controller
     {
         $artists = User::where('role', 'artiste')
             ->where('status', 'active')
+            ->orderByDesc('aura')
             ->take(7)
             ->get();
 
@@ -25,7 +26,6 @@ class HomeController extends Controller
         $trendingTracks = Track::withCount('likes')
             ->with('user')
             ->orderByDesc('likes_count')
-            ->whereBetween('created_at', [now()->subWeek(), now()])
             ->take(6)
             ->get();
 
