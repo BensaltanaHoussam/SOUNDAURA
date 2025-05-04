@@ -21,7 +21,7 @@
             <button class="bg-black hover:bg-slate-600 px-6 py-2 rounded-full">Deleted</button>
         </div>
 
-
+        
 
         <!-- Layout Toggle -->
         <div class="flex justify-between items-center mb-4">
