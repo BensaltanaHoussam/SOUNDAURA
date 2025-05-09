@@ -36,6 +36,7 @@ class ProfileController extends Controller
         $user->email = $validated['email'];
         $user->bio = $validated['bio'];
         $user->save();
+        
 
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }

@@ -33,7 +33,6 @@ class LikeController extends Controller
             if ($artist->aura >= 50) {
                 $artist->decrement('aura', 50);
             } else {
-                // Optionally set to 0 if it would go negative
                 $artist->update(['aura' => 0]);
             }
         } else {

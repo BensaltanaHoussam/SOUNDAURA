@@ -79,13 +79,8 @@ Follow these instructions to set up the project locally.
         ```
     *   Edit the `.env` file and configure your database connection (`DB_*` variables), app URL (`APP_URL`), and any other necessary settings (mail, etc.).
 
-5.  **Generate application key:**
-    ```bash
-    php artisan key:generate
-    ```
 
-
-6.  **Link storage directory:**
+5.  **Link storage directory:**
     ```bash
     php artisan storage:link
     ```
